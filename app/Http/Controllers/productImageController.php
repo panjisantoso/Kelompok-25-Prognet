@@ -13,6 +13,26 @@ class productImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function save(Request $request)
+    {
+        $file = $request->file('image');
+        //save format
+        $format = $request->image->extension();
+        //save full adress of image
+        $patch = $request->image->store('images');
+
+        $name = $file->getClientOriginalName();
+
+        //save on table
+        DB::table('pictbl')->insert([
+            'orginal_name'=>$name,
+            'format'=>$base,
+            'patch'=>$patch
+        ]);
+
+        return response()
+            ->view('pic.pic',compact("patch"));
+    }
     public function index()
     {
         $productImages = ProductImage::get();
@@ -38,9 +58,8 @@ class productImageController extends Controller
      */
     public function store(Request $request)
     {
-        $filename = time().'.'.request()->img->getClientOriginalExtension();
-        request()->img->move(public_path('images'), $filename);
-
+        $test = $request->img;
+        return $test;
         date_default_timezone_set('Asia/Kuala_Lumpur');
         $produkImages = new ProductImage;
         $produkImages->product_id = $request->product_id;

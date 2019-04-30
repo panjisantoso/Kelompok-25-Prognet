@@ -105,8 +105,8 @@ class categoriesController extends Controller
     public function destroy($id)
     {
         $categories = Categories::find($id);
-        // $categories->status_aktif = 0;
-        $categories->delete();
+        $categories->status_aktif = 0;
+        $categories->save();
         
         return redirect("/admin/categories")->with("alert-success", "Berhasil menonaktifkan categories");
     }

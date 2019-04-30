@@ -24,7 +24,7 @@
                                 <div class="card-body card-block">
                                     <div class="card-header">
                                         <h1>
-                                            <strong>Tambah</strong> <small> Data Product </small>
+                                            <strong>Tambah</strong> <small> Data Product Images</small>
                                         </h1>
                                     </div>
                                         <div class="form-group row">
@@ -37,16 +37,11 @@
                                                 </select>
                                             </div>
                                         </div>
+                                        <
                                         <div class="form-group row">
                                             <div class="col-md-12">
-                                            <label for="c_address" class="text-black">Nama Gambar<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="image_name" name="image_name" placeholder="Masukkan Nama Gambar">
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col-md-12">
-                                            <label for="c_address" class="text-black">Nama Gambar<span class="text-danger">*</span></label>
-                                            <input type="file" class="form-control" id="img" name="img" placeholder="Masukkan Nama Gambar">
+                                            <label for="c_address" class="text-black">File Gambar<span class="text-danger">*</span></label>
+                                            <input type="file" class="form-control" id="image_name" name="image_name" placeholder="Masukkan FIle Gambar">
                                             </div>
                                         </div>
                                     <div class="form-group">
