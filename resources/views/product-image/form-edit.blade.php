@@ -19,13 +19,13 @@
                                     <div>{{Session::get('alert-success')}}</div>
                                 </div>
                             @endif
-                            <form action="/admin/product-images/ {{ $productImages->id }}" method="POST" class="form">
+                            <form action="/admin/product-images/ {{ $productImages->id }}" method="POST" class="form" enctype="multipart/form-data">
                             @csrf
                             @method("PUT")
                                 <div class="card-body card-block">
                                     <div class="card-header">
                                         <h1>
-                                            <strong>Tambah</strong> <small> Data Product </small>
+                                            <strong>Edit</strong> <small> Data Product </small>
                                         </h1>
                                     </div>
                                         <div class="form-group row">
@@ -33,15 +33,15 @@
                                                 <label for="c_address" class="text-black">Nama Produk <span class="text-danger">*</span></label>
                                                 <select name="product_id" id="product_id" class="form-control">
                                                     @for ($i = 1; $i <= sizeof($product); $i++)
-                                                        <option value="{{ $product[$i-1]->id }}">{{ $product[$i-1]->product_name }}</option>
+                                                        <option value="{{ $product[$i-1]->id }}" {{ ($productImages->product_id == $product[$i-1]->id ) ? 'selected' : '' }}>{{ $product[$i-1]->product_name }}</option>
                                                     @endfor
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-12">
-                                            <label for="c_address" class="text-black">Nama Gambar<span class="text-danger">*</span></label>
-                                            <input type="text" class="form-control" id="image_name" name="image_name" placeholder="Masukkan Nama Gambar" value="{{ $productImages->image_name }}">
+                                                <label for="c_address" class="text-black">File Gambar<span class="text-danger">*</span></label>
+                                                <input type="file" class="form-control" required name="image[]" id="image" multiple accept="image/*" placeholder="Masukkan FIle Gambar">
                                             </div>
                                         </div>
                                     <div class="form-group">

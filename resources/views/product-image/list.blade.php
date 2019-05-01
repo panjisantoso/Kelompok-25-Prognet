@@ -43,7 +43,7 @@
                                         <tr>
                                             <td>{{ $i }}</td>
                                             <td>{{ $productImages[$i-1]->product_id }}</td>
-                                            <td>{{ $productImages[$i-1]->image_name }}</td>
+                                            <td> <img src="/{{ $productImages[$i-1]->image_name }}" width="150"> </td>
                                             <td>{{ $productImages[$i-1]->created_at }}</td>
                                             <td>{{ $productImages[$i-1]->updated_at }}</td>
                                             <td>

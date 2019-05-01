@@ -19,7 +19,7 @@
                                     <div>{{Session::get('alert-success')}}</div>
                                 </div>
                             @endif
-                            <form action="/admin/product-images" method="POST" class="form">
+                            <form action="/admin/product-images" method="POST" class="form" enctype="multipart/form-data">
                             @csrf
                                 <div class="card-body card-block">
                                     <div class="card-header">
@@ -37,11 +37,11 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <
+                                        
                                         <div class="form-group row">
                                             <div class="col-md-12">
-                                            <label for="c_address" class="text-black">File Gambar<span class="text-danger">*</span></label>
-                                            <input type="file" class="form-control" id="image_name" name="image_name" placeholder="Masukkan FIle Gambar">
+                                                <label for="c_address" class="text-black">File Gambar<span class="text-danger">*</span></label>
+                                                <input type="file" class="form-control" required name="image[]" id="image" multiple accept="image/*" placeholder="Masukkan FIle Gambar">
                                             </div>
                                         </div>
                                     <div class="form-group">

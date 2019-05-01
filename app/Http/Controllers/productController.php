@@ -109,6 +109,6 @@ class productController extends Controller
         $products = Product::find($id);
         $products->status_aktif = 0;
         $products->save();
-        return redirect("/admin/product")->with("alert-success", "Berhasil menonaktifkan categories");;
+        return redirect("/admin/product")->with("alert-success", "Berhasil menonaktifkan categories");
     }
 }
