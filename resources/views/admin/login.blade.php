@@ -1,6 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.layout1')
 
-@section('content')
+@section('pageHeader', 'Home')
+
+@section('isi')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
