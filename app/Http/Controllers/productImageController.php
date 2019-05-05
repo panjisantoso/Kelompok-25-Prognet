@@ -14,26 +14,7 @@ class productImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function save(Request $request)
-    {
-        $file = $request->file('image');
-        //save format
-        $format = $request->image->extension();
-        //save full adress of image
-        $patch = $request->image->store('images');
-
-        $name = $file->getClientOriginalName();
-
-        //save on table
-        DB::table('pictbl')->insert([
-            'orginal_name'=>$name,
-            'format'=>$base,
-            'patch'=>$patch
-        ]);
-
-        return response()
-            ->view('pic.pic',compact("patch"));
-    }
+    
     public function index()
     {
         $productImages = ProductImage::get();

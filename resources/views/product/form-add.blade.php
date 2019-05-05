@@ -47,12 +47,7 @@
                                     <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Masukkan Deskripsi Produk..." ></textarea>
                                 </div>
                                 
-                                <div class="form-group row">
-                                    <div class="col-md-12">
-                                    <label for="c_address" class="text-black">Product Rate <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="product_rate" name="product_rate" placeholder="Masukkan Product rate" >
-                                    </div>
-                                </div>
+                                
 
 
                                 <div class="form-group row">
