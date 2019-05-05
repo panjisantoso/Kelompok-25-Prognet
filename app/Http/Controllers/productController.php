@@ -107,7 +107,8 @@ class productController extends Controller
     public function destroy($id)
     {
         $products = Product::find($id);
-        $products->delete();
-        return redirect("/product");
+        $products->status_aktif = 0;
+        $products->save();
+        return redirect("/admin/product")->with("alert-success", "Berhasil menonaktifkan categories");
     }
 }

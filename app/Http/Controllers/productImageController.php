@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ProductImage;
 use App\Product;
-
+use Carbon\Carbon;
+use File;
 class productImageController extends Controller
 {
     /**
@@ -13,6 +14,26 @@ class productImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function save(Request $request)
+    {
+        $file = $request->file('image');
+        //save format
+        $format = $request->image->extension();
+        //save full adress of image
+        $patch = $request->image->store('images');
+
+        $name = $file->getClientOriginalName();
+
+        //save on table
+        DB::table('pictbl')->insert([
+            'orginal_name'=>$name,
+            'format'=>$base,
+            'patch'=>$patch
+        ]);
+
+        return response()
+            ->view('pic.pic',compact("patch"));
+    }
     public function index()
     {
         $productImages = ProductImage::get();
@@ -38,20 +59,34 @@ class productImageController extends Controller
      */
     public function store(Request $request)
     {
-        $filename = time().'.'.request()->img->getClientOriginalExtension();
-        request()->img->move(public_path('images'), $filename);
+        
+        if($request->hasfile('image'))
+        {
+            $current_timestamp = Carbon::now()->timestamp;
+            $i = 1;
+            foreach($request->file('image') as $file)
+            {
+                
+                    $name=$file->getClientOriginalName();
+                    $path = 'files/'. $name;
+                    if(File::exists($path)) {
+                        $name = $current_timestamp.$file->getClientOriginalName();
+                        $path = 'files/'. $name;
+                    }
+                    
+                    $file->move(public_path().'/files/', $name);
 
-        date_default_timezone_set('Asia/Kuala_Lumpur');
-        $produkImages = new ProductImage;
-        $produkImages->product_id = $request->product_id;
-        // $produkImages->image_name = $request->image_name;
-        $produkImages->created_at = date('Y-m-d H:i:s');
-        $produkImages->updated_at = date('Y-m-d H:i:s');
-        $produkImages->image_name = $filename;
-        $produkImages->save();
+                    $image = new ProductImage;
+                    $image->product_id = $request->product_id;
+                    $image->image_name=$path;
+                    $image->save();
+                $i++;    
+            }
+            
+        }
 
         $productImages = ProductImage::get();
-        return view("product-image.list", compact("productImages"));
+        return view("product-image.list", compact("productImages"))->with("alert-success", "Berhasil Menambahkan Data Gambar");
     }
 
     /**
@@ -87,14 +122,32 @@ class productImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        date_default_timezone_set('Asia/Kuala_Lumpur');
-        $produkImages = ProductImage::find($id);
-        $produkImages->product_id = $request->product_id;
-        $produkImages->image_name = $request->image_name;
-        $produkImages->updated_at = date('Y-m-d H:i:s');
-        $produkImages->save();
+        
+        if($request->hasfile('image'))
+        {
+            
+            $current_timestamp = Carbon::now()->timestamp;
+            $i = 1;
+            foreach($request->file('image') as $file)
+            {
+                    $name=$file->getClientOriginalName();
+                    $path = 'files/'. $name;
+                    if(File::exists($path)) {
+                        $name = $current_timestamp.$file->getClientOriginalName();
+                        $path = 'files/'. $name;
+                    }
+                    
+                    $file->move(public_path().'/files/', $name);
 
-        return redirect('/admin/product-images');
+                    $image = ProductImage::find($id);
+                    $image->product_id = $request->product_id;
+                    $image->image_name=$path;
+                    $image->save();
+                $i++;    
+            }
+        }
+
+        return redirect('/admin/product-images')->with("alert-success", "Berhasil Mengubah Data Gambar");
     }
 
     /**
@@ -105,6 +158,9 @@ class productImageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $productImages = ProductImage::find($id);
+        $productImages->delete();
+        return redirect('/admin/product-images')->with("alert-success", "Berhasil Menghapus Data Gambar");
+   
     }
 }

@@ -38,6 +38,7 @@
                                         <th>Updated At</th>
                                         <th>Stock</th>
                                         <th>Weight</th>
+                                        <th>Status Aktif</th>
                                         <th>Action</th>
                                         
                                     </tr>
@@ -55,6 +56,14 @@
                                             <td>{{ $products[$i-1]->stock }}</td>
                                             <td>{{ $products[$i-1]->weight }}</td>
                                             <td>
+                                                @if( $products[$i-1]->status_aktif == 1 )
+                                                    Aktif
+                                                @else
+                                                    Non Aktif
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if( $products[$i-1]->status_aktif == 1 )
                                                     <form action="/admin/product/{{$products[$i-1]->id}}/edit" method="GET">
                                                         <button type="submit">
                                                             <i class="fa fa-edit">Edit</i>
@@ -67,6 +76,7 @@
                                                             <i class="fa fa-trash">Delete</i>
                                                         </button>
                                                     </form>
+                                                @endif
                                             </td>
                                             
                                         </tr>

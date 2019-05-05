@@ -33,6 +33,7 @@
                                         <th>Product Category name</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
+                                        <th>Status Aktif</th>
                                         <th>Action</th>
                                         
                                     </tr>
@@ -44,8 +45,15 @@
                                             <td>{{ $categories[$i-1]->category_name }}</td>
                                             <td>{{ $categories[$i-1]->created_at }}</td>
                                             <td>{{ $categories[$i-1]->updated_at }}</td>
-                                           
                                             <td>
+                                                @if( $categories[$i-1]->status_aktif == 1 )
+                                                    Aktif
+                                                @else
+                                                    Non Aktif
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if( $categories[$i-1]->status_aktif == 1 )
                                                     <form action="/admin/categories/{{$categories[$i-1]->id}}/edit" method="GET">
                                                         <button type="submit">
                                                             <i class="fa fa-edit">Edit</i>
@@ -58,6 +66,7 @@
                                                             <i class="fa fa-trash">Delete</i>
                                                         </button>
                                                     </form>
+                                                @endif
                                             </td>
                                             
                                         </tr>

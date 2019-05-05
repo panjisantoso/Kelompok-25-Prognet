@@ -47,3 +47,8 @@ Route::group(['middleware'=>'auth:admin'], function(){
     Route::get('/home/admin', 'AdminController@home')->middleware('verified');;
     Route::post('/logout/admin', 'AdminController@logout')->name('logout.admin');
 });
+
+Route::get('pic',function (){
+    return view('pic.pic');
+});
+Route::post('saved','test2Controller@save');
