@@ -1,6 +1,8 @@
-@extends('layouts.admin')
+@extends('layouts.layout1')
 
-@section('content')
+@section('pageHeader', 'Home')
+
+@section('isi')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -25,7 +27,19 @@
                             </div>
                         </div>
 
-                        
+                        <div class="form-group row">
+                            <label for="profile_image" class="col-md-4 col-form-label text-md-right">{{ ('Profile Image') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="profile_image" type="text" class="form-control{{ $errors->has('profile_image') ? ' is-invalid' : '' }}" name="profile_image" value="{{ old('profile_image') }}" required autofocus>
+
+                                @if ($errors->has('profile_image'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('profile_image') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ ('Username') }}</label>
@@ -55,7 +69,19 @@
                             </div>
                         </div>
 
-                       
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ ('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                                @if ($errors->has('email'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{('Password') }}</label>

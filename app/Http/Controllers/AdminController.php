@@ -13,13 +13,10 @@ class AdminController extends Controller
         return view('admin.register');
     }
 
-    public function dashboard(){
-      return view('dashboard1');
-    }
-
     public function registerAdmin(Request $request)
     {
       $this->validate($request, [
+       'email'=> 'required|unique:users|email|max:255',
        'name'=>  'required',
        'password'=> 'required|min:6|confirmed',
        'profile_image'=>'required',
@@ -31,6 +28,7 @@ class AdminController extends Controller
 
      Admin::create([
           'name'=>$request->name,
+          'email'=>$request->email,
           'password'=>bcrypt($request->password),
           'profile_image'=>$request->profile_image,
           'phone'=>$request->phone,
@@ -41,7 +39,7 @@ class AdminController extends Controller
 
     public function loginAdmin()
     {
-        return view('admin.login1');
+        return view('admin.login');
     }
 
     public function adminAuth(Request $request)
