@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Product;
+use App\CategoryDetail;
+use App\Categories;
+use App\ProductImage;
 use Illuminate\Http\Request;
 
 class productController extends Controller
@@ -14,8 +18,19 @@ class productController extends Controller
      */
     public function index()
     {
-        $products = Product::get();
-        return view("product.list", compact("products"));
+       
+        // $products = DB::table('product_category_details')
+        // ->join('products','product_category_details.product_id','=','products.id')
+        // ->join('product_categories','product_category_details.category_id','=','product_categories.id')
+        // ->get();
+        // $category = DB::table('product_category_details')
+        // ->join('products','product_category_details.product_id','=','products.id')
+        // ->join('product_categories','product_category_details.category_id','=','product_categories.id')
+        // ->select('product_categories.category_name')
+        // ->where('product_category_details.product_id','1')
+        // ->value('product_category_details.product_id');
+      $products = Product::get();
+        return view("product.list", compact("products",'detail'));
     }
 
     /**
@@ -42,7 +57,7 @@ class productController extends Controller
         $produks->product_name = $request->product_name;
         $produks->price = $request->price;
         $produks->description = $request->description;
-        $produks->product_rate = $request->product_rate;
+        $produks->product_rate = 0;
         $produks->created_at = date('Y-m-d H:i:s');
         $produks->updated_at = date('Y-m-d H:i:s');
         $produks->stock = $request->stock;
@@ -59,9 +74,22 @@ class productController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function cariTabel(Request $request){
+        $section = 'field';
+        
+    }
     public function show($id)
     {
-        //
+        $products = Product::get();
+        $productid = Product::find($id);
+        // $detail = CategoryDetail::where('product_category_details.product_id',$id)->get();
+        $detail = DB::table('product_category_details')
+        ->join('products','product_category_details.product_id','=','products.id')
+        ->join('product_categories','product_category_details.category_id','=','product_categories.id')
+        ->where('product_category_details.product_id',$id)
+        ->get();
+        $productImages = ProductImage::where('product_images.product_id',$id)->get();
+        return view("product.list", compact('detail','products','productid','productImages'));
     }
 
     /**
@@ -89,7 +117,7 @@ class productController extends Controller
         $produks->product_name = $request->product_name;
         $produks->price = $request->price;
         $produks->description = $request->description;
-        $produks->product_rate = $request->product_rate;
+        // $produks->product_rate = $request->product_rate;
         $produks->updated_at = date('Y-m-d H:i:s');
         $produks->stock = $request->stock;
         $produks->weight = $request->weight;
@@ -109,6 +137,13 @@ class productController extends Controller
         $products = Product::find($id);
         $products->status_aktif = 0;
         $products->save();
-        return redirect("/admin/product")->with("alert-success", "Berhasil menonaktifkan categories");
+        return redirect("/admin/product")->with("alert-success", "Berhasil menonaktifkan product");
+    }
+    public function aktif($id)
+    {
+        $products = Product::find($id);
+        $products->status_aktif = 1;
+        $products->save();
+        return redirect("/admin/product")->with("alert-success", "Berhasil Mengaktifkan product");
     }
 }

@@ -19,6 +19,7 @@ class productCategoryDetailsController extends Controller
         $categoryDetails = DB::table('product_category_details')
         ->join('products','product_category_details.product_id','=', 'products.id')
         ->join('product_categories', 'product_category_details.category_id','=', 'product_categories.id')
+        ->orderByRaw('product_category_details.product_id DESC')
         ->get();
         return view('details.list', compact('categoryDetails'));
     }

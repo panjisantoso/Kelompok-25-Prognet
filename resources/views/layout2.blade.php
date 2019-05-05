@@ -49,7 +49,7 @@
                     <li>
                         <a href="/dashboard1"> <i class="menu-icon fa fa-dashboard"></i>Dashboard</a>
                     </li>
-                    <h3 class="menu-title">Menu Koperasi</h3><!-- /.menu-title -->
+                    <h3 class="menu-title">Menu Admin</h3><!-- /.menu-title -->
                     
                     <li>
                         <a href="/admin/product"> <i class="menu-icon fa fa-gift"></i>Product</a>
@@ -104,9 +104,7 @@
                 
                     <div class="user-area dropdown float-right">
                     
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="/images/admin.jpg" alt="User Avatar">
-                        </a>
+                       
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="/profile"><i class="fa fa-user"></i> My Profile</a>
@@ -159,36 +157,6 @@
    </div><!-- /#right-panel -->
 
 <!-- Right Panel -->
-
-<!--<script src="/vendors/jquery/dist/jquery.min.js"></script>
-<script src="/vendors/popper.js/dist/umd/popper.min.js"></script>
-<script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/assets/js/main.js"></script>
-<script src="/vendors/chosen/chosen.jquery.min.js"></script>
-
-<script src="/vendors/jquery/dist/jquery.min.js"></script>
-<script src="/vendors/popper.js/dist/umd/popper.min.js"></script>
-<script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/assets/js/main.js"></script>
-<script src="/vendors/chosen/chosen.jquery.min.js"></script>
-
-    <script src="/vendors/jquery/dist/jquery.min.js"></script>
-    <script src="/vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/assets/js/main.js"></script>
-
-
-    <script src="/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-    <script src="/vendors/jszip/dist/jszip.min.js"></script>
-    <script src="/vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="/vendors/pdfmake/build/vfs_fonts.js"></script>
-    <script src="/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="/vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
-    <script src="/assets/js/init-scripts/data-table/datatables-init.js"></script> -->
 
 
 

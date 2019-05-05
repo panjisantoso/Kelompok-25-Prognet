@@ -22,7 +22,7 @@ Route::resource('/admin/couriers','courierController');
 Route::resource('/admin/categories','categoriesController');
 Route::resource('/admin/product-images', 'productImageController');
 Route::resource('/admin/categories-details', 'productCategoryDetailsController');
-
+Route::get('/admin/product/{id}/aktif','productController@aktif');
 Route::get('/admin','adminController@dashboard');
 
 Route::get('/', function () {
