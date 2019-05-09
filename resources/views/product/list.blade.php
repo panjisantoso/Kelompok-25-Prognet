@@ -115,7 +115,7 @@
                                                             @method("DELETE")
                                                             <img src="/{{ $images->image_name }}" width="70"> 
                                                             <button type="submit" class="btn btn-danger btn-sm">
-                                                                <i class="fa fa-minus"></i> Hapus
+                                                                <i class="fa fa-minus"></i>
                                                             </button>
                                                         </form>
                                                         
@@ -127,8 +127,8 @@
                                                     @method("put")
                                                     
                                                     <input type="file"  required name="image[]" id="image" multiple accept="image/*" >
-                                                    <button type="submit" class="btn btn-outline-success btn-lg active">
-                                                        Submit
+                                                    <button type="submit" class="btn btn-success btn-sm">
+                                                        <i class="fa fa-plus"></i>
                                                     </button>
                                                 </form>
                                             </td>
