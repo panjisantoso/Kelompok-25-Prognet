@@ -16,6 +16,7 @@
     <link rel="apple-touch-icon" href="/apple-icon.png">
     <link rel="shortcut icon" href="/favicon.ico">
 
+    
 
     <link rel="stylesheet" href="/vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
@@ -60,12 +61,12 @@
                     <li>
                         <a href="/admin/categories"> <i class="menu-icon fa fa-file"></i>Product Categories</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="/admin/categories-details"> <i class="menu-icon fa fa-file"></i>Product Category Details</a>
                     </li>
                     <li>
                         <a href="/admin/product-images"> <i class="menu-icon fa fa-picture-o"></i>Product Images</a>
-                    </li>
+                    </li> -->
                     
 
                         
@@ -172,6 +173,7 @@
 <script src="/vendors/jqvmap/dist/jquery.vmap.min.js"></script>
 <script src="/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
 <script src="/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+
 <script>
     (function($) {
         "use strict";

@@ -34,7 +34,20 @@
                                         <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Masukkan Nama Produk" value="{{ $products->product_name }}">
                                         </div>
                                     </div>
-
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label class=" form-control-label">Kategori Produk</label></div>
+                                        <div class="col col-md-9">
+                                            <div class="form-check">
+                                            @foreach($category as $cat)
+                                                <input type="checkbox" id="category_id" name="category_id[]" value="{{ $cat->id }}" class="form-check-input" 
+                                                 {{ count($category_details->where('category_id', $cat->id))
+                                                        ? "checked" : "" }}>
+                                                {{ $cat->category_name }}
+                                                <br>
+                                            @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group row">
                                         <div class="col-md-12">
                                         <label for="c_address" class="text-black">Harga Produk <span class="text-danger">*</span></label>
@@ -47,9 +60,7 @@
                                     <textarea name="description" id="description" cols="30" rows="5" class="form-control" placeholder="Masukkan Deskripsi Produk..." >{{ $products->description }}</textarea>
                                 </div>
                                 
-                          
-
-
+                        
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                     <label for="c_address" class="text-black">Stock <span class="text-danger">*</span></label>

@@ -8,6 +8,8 @@ use App\CategoryDetail;
 use App\Categories;
 use App\ProductImage;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use File;
 
 class productController extends Controller
 {
@@ -18,19 +20,22 @@ class productController extends Controller
      */
     public function index()
     {
-       
-        // $products = DB::table('product_category_details')
-        // ->join('products','product_category_details.product_id','=','products.id')
-        // ->join('product_categories','product_category_details.category_id','=','product_categories.id')
-        // ->get();
+        
+        $productsjoin = DB::table('product_category_details')
+        ->join('products','product_category_details.product_id','=','products.id')
+        ->join('product_categories','product_category_details.category_id','=','product_categories.id')
+        ->get();
         // $category = DB::table('product_category_details')
         // ->join('products','product_category_details.product_id','=','products.id')
         // ->join('product_categories','product_category_details.category_id','=','product_categories.id')
         // ->select('product_categories.category_name')
         // ->where('product_category_details.product_id','1')
         // ->value('product_category_details.product_id');
-      $products = Product::get();
-        return view("product.list", compact("products",'detail'));
+        $productImages = ProductImage::get();
+        $products = Product::get();
+        // $productCategory = CategoryDetail::join('product_categories','product_categories.id','=','product_category_details.category_id');
+        // $categoryDetails = CategoryDetail::get();
+        return view("product.list", compact('productsjoin',"products",'detail','item','productImages','productCategory','CategoryDetail'));
     }
 
     /**
@@ -40,7 +45,8 @@ class productController extends Controller
      */
     public function create()
     {
-        return view("product.form-add");
+        $category = Categories::get();
+        return view("product.form-add",compact('category'));
     }
 
     /**
@@ -63,6 +69,42 @@ class productController extends Controller
         $produks->stock = $request->stock;
         $produks->weight = $request->weight;
         $produks->save();
+        
+        $get_id_product = Product::select('id')
+        ->orderBy('id','DESC')
+        ->first();
+        foreach($request->category_id as $category){
+            $category_details = new CategoryDetail;
+            $category_details->product_id = $get_id_product->id;
+            $category_details->category_id = $category;
+            $category_details->created_at = date('Y-m-d H:i:s');
+            $category_details->updated_at = date('Y-m-d H:i:s');
+            $category_details->save();
+        }
+        if($request->hasfile('image'))
+        {
+            $current_timestamp = Carbon::now()->timestamp;
+            $i = 1;
+            foreach($request->file('image') as $file)
+            {
+                
+                    $name=$file->getClientOriginalName();
+                    $path = 'files/'. $name;
+                    if(File::exists($path)) {
+                        $name = $current_timestamp.$file->getClientOriginalName();
+                        $path = 'files/'. $name;
+                    }
+                    
+                    $file->move(public_path().'/files/', $name);
+
+                    $image = new ProductImage;
+                    $image->product_id = $get_id_product->id;
+                    $image->image_name=$path;
+                    $image->save();
+                $i++;    
+            }
+            
+        }
 
         $products = Product::get();
         return view("product.list", compact("products"));
@@ -74,12 +116,37 @@ class productController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function cariTabel(Request $request){
-        $section = 'field';
-        
+    public function imageSave(Request $request){
+        if($request->hasfile('image'))
+        {
+            $current_timestamp = Carbon::now()->timestamp;
+            $i = 1;
+            foreach($request->file('image') as $file)
+            {
+                
+                    $name=$file->getClientOriginalName();
+                    $path = 'files/'. $name;
+                    if(File::exists($path)) {
+                        $name = $current_timestamp.$file->getClientOriginalName();
+                        $path = 'files/'. $name;
+                    }
+                    
+                    $file->move(public_path().'/files/', $name);
+                    $image = new ProductImage;
+                    $image->product_id = $id;
+                    $image->image_name=$path;
+                    $image->save();
+                $i++;    
+            }
+        }
     }
     public function show($id)
     {
+        $productImages = ProductImage::get();
+        $productsjoin = DB::table('product_category_details')
+        ->join('products','product_category_details.product_id','=','products.id')
+        ->join('product_categories','product_category_details.category_id','=','product_categories.id')
+        ->get();
         $products = Product::get();
         $productid = Product::find($id);
         // $detail = CategoryDetail::where('product_category_details.product_id',$id)->get();
@@ -89,7 +156,7 @@ class productController extends Controller
         ->where('product_category_details.product_id',$id)
         ->get();
         $productImages = ProductImage::where('product_images.product_id',$id)->get();
-        return view("product.list", compact('detail','products','productid','productImages'));
+        return view("product.list", compact('detail','products','productid','productImages','productsjoin','productImages'));
     }
 
     /**
@@ -100,8 +167,10 @@ class productController extends Controller
      */
     public function edit($id)
     {
+        $category = Categories::get();
+        $category_details = CategoryDetail::where('product_category_details.product_id',$id)->get();
         $products = Product::find($id);
-        return view("product.form-edit", compact("products"));
+        return view("product.form-edit", compact("products",'category','category_details'));
     }
 
     /**
@@ -122,7 +191,19 @@ class productController extends Controller
         $produks->stock = $request->stock;
         $produks->weight = $request->weight;
         $produks->save();
+        foreach($request->category_id as $category){
+            $category_details = CategoryDetail::where('product_id',$id);
+            $category_details->delete();
+        }
 
+        foreach($request->category_id as $category){
+            $category_details = new CategoryDetail;
+            $category_details->product_id = $id;
+            $category_details->category_id = $category;
+            $category_details->created_at = date('Y-m-d H:i:s');
+            $category_details->updated_at = date('Y-m-d H:i:s');
+            $category_details->save();
+        }
         return redirect("/admin/product");
     }
 

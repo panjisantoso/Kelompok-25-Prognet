@@ -56,7 +56,7 @@ class productImageController extends Controller
                     }
                     
                     $file->move(public_path().'/files/', $name);
-
+                    
                     $image = new ProductImage;
                     $image->product_id = $request->product_id;
                     $image->image_name=$path;
@@ -120,15 +120,15 @@ class productImageController extends Controller
                     
                     $file->move(public_path().'/files/', $name);
 
-                    $image = ProductImage::find($id);
-                    $image->product_id = $request->product_id;
+                    $image = new ProductImage;
+                    $image->product_id = $id;
                     $image->image_name=$path;
                     $image->save();
                 $i++;    
             }
         }
 
-        return redirect('/admin/product-images')->with("alert-success", "Berhasil Mengubah Data Gambar");
+        return redirect('/admin/product')->with("alert-success", "Berhasil Menambah Data Gambar");
     }
 
     /**
@@ -141,7 +141,7 @@ class productImageController extends Controller
     {
         $productImages = ProductImage::find($id);
         $productImages->delete();
-        return redirect('/admin/product-images')->with("alert-success", "Berhasil Menghapus Data Gambar");
+        return redirect('/admin/product')->with("alert-success", "Berhasil Menghapus Data Gambar");
    
     }
 }
