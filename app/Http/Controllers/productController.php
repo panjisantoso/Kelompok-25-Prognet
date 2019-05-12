@@ -143,20 +143,16 @@ class productController extends Controller
     public function show($id)
     {
         $productImages = ProductImage::get();
-        $productsjoin = DB::table('product_category_details')
-        ->join('products','product_category_details.product_id','=','products.id')
-        ->join('product_categories','product_category_details.category_id','=','product_categories.id')
-        ->get();
         $products = Product::get();
         $productid = Product::find($id);
-        // $detail = CategoryDetail::where('product_category_details.product_id',$id)->get();
         $detail = DB::table('product_category_details')
         ->join('products','product_category_details.product_id','=','products.id')
         ->join('product_categories','product_category_details.category_id','=','product_categories.id')
         ->where('product_category_details.product_id',$id)
         ->get();
+        
         $productImages = ProductImage::where('product_images.product_id',$id)->get();
-        return view("product.list", compact('detail','products','productid','productImages','productsjoin','productImages'));
+        return view("product.detail", compact('detail','products','productid','productImages','productsjoin','productImages'));
     }
 
     /**

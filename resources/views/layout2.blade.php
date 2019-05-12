@@ -13,11 +13,14 @@
     <meta name="description" content="Sufee Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+
     <link rel="apple-touch-icon" href="/apple-icon.png">
     <link rel="shortcut icon" href="/favicon.ico">
 
-    
-
+    <link rel="stylesheet" href="/assets2/plugins/bootstrap/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="/assets2/css/ecommerce.css">
+    <link rel="stylesheet" href="/assets2/css/color_skins.css">
     <link rel="stylesheet" href="/vendors/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/vendors/themify-icons/css/themify-icons.css">
@@ -173,7 +176,21 @@
 <script src="/vendors/jqvmap/dist/jquery.vmap.min.js"></script>
 <script src="/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
 <script src="/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/jquery-ui.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/aos.js"></script>
 
+<script src="/assets2/plugins/jquery-spinner/js/jquery.spinner.js"></script>
+
+<script src="/assets2/bundles/libscripts.bundle.js"></script>    
+<script src="/assets2/bundles/vendorscripts.bundle.js"></script>
+<script src="/assets2/bundles/mainscripts.bundle.js"></script>
+
+<script src="/js/main.js"></script>
 <script>
     (function($) {
         "use strict";
