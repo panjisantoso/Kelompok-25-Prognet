@@ -30,7 +30,6 @@ class AdminController extends Controller
           'name'=>$request->name,
           'email'=>$request->email,
           'password'=>bcrypt($request->password),
-          'profile_image'=>$request->profile_image,
           'phone'=>$request->phone,
           'username'=>$request->username
     ]);
