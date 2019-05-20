@@ -30,9 +30,17 @@
                             <div class="preview-pic tab-content">
                                 @for($i=1; $i<=sizeof($productImages); $i++)
                                     @if($i == 1)
-                                        <div class="tab-pane active" id="product_{{ $i }}"><img src="/{{ $productImages[$i-1]->image_name }}" alt="" class="img-fluid" /></div>
+                                        <div class="tab-pane active" id="product_{{ $i }}">
+                                            <a href="/{{ $productImages[$i-1]->image_name }}">
+                                                <img src="/{{ $productImages[$i-1]->image_name }}" alt="" class="img-fluid" />
+                                            </a>
+                                        </div>
                                     @else
-                                        <div class="tab-pane" id="product_{{ $i }}"><img src="/{{ $productImages[$i-1]->image_name }}" alt="" class="img-fluid" /></div>
+                                        <div class="tab-pane" id="product_{{ $i }}">
+                                            <a href="/{{ $productImages[$i-1]->image_name }}">
+                                                <img src="/{{ $productImages[$i-1]->image_name }}" alt="" class="img-fluid" />
+                                            </a>
+                                        </div>
                                     @endif
                                 @endfor
                             </div>
@@ -46,6 +54,7 @@
                                 @endfor
                             </ul>  
                         </div>
+                        
                         <div class="col-lg-8 ">
                             <form action="/admin/product" method="POST" class="form">
                                 @csrf

@@ -24,12 +24,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-            </div>
-            
-            
-            
-            
-            
+            </div>       
 @endsection
 
 

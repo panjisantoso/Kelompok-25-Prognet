@@ -7,6 +7,18 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+            <div class="col-md-12">
+                    @if(\Session::has('alert'))
+                        <div class="alert alert-danger">
+                            <div>{{Session::get('alert')}}</div>
+                        </div>
+                    @endif
+                    @if(\Session::has('alert-success'))
+                        <div class="alert alert-success">
+                            <div>{{Session::get('alert-success')}}</div>
+                        </div>
+                    @endif
+                </div>
                 <div class="card-header">Admin Login</div>
 
                 <div class="card-body">
@@ -17,7 +29,7 @@
                             <label for="email" class="col-sm-4 col-form-label text-md-right">{{('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">

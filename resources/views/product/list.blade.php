@@ -36,6 +36,7 @@
                                         <th>Product Name</th>
                                         <th>Product Images</th>
                                         <th>Product Categories</th>
+                                        <th>Discount</th>
                                         <th>Price</th>
                                         <!-- <th>Description</th> -->
                                         <th>Product Rate</th>
@@ -61,7 +62,9 @@
                                                         <form action="/admin/product-images/{{$images->id}}" method="POST">
                                                             @csrf
                                                             @method("DELETE")
-                                                            <img src="/{{ $images->image_name }}" width="70"> 
+                                                            <a href="/{{ $images->image_name }}">
+                                                                <img src="/{{ $images->image_name }}" width="70"> 
+                                                            </a>
                                                             <button type="submit" class="btn btn-danger btn-sm">
                                                                 <i class="fa fa-minus"></i>
                                                             </button>
@@ -85,6 +88,16 @@
                                                     @if($category->product_id == $products[$i-1]->id)
                                                         - {{ $category->category_name }}
                                                         <br>
+                                                    
+                                                    @endif
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                @foreach($discounts as $d)
+                                                    @if($d->id_product == $products[$i-1]->id)
+                                                        {{ $d->percentage }}%
+                                                        <br>
+                                                    
                                                     @endif
                                                 @endforeach
                                             </td>

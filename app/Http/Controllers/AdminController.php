@@ -8,6 +8,10 @@ use Auth;
 
 class AdminController extends Controller
 {
+
+    public function dashboard(){
+      return view('dashboard1');
+    }
     public function create()
     {
         return view('admin.register');
@@ -43,18 +47,18 @@ class AdminController extends Controller
 
     public function adminAuth(Request $request)
    {
-           $this->validate($request, [
-        'email'=>'required|email',
-        'password'=>'required'
-   ]);
-     $email = $request->email;
+      $this->validate($request, [
+          'username'=>'required',
+          'password'=>'required'
+      ]);
+     $username = $request->username;
      $password = $request->password;
-     $remember = $request->remember_token;
+    //  $remember = $request->remember_token;
 
-     if(Auth::guard('admin')->attempt(['email'=> $email, 'password'=> $password], $remember)){
-       return redirect()->intended('/home/admin');
+     if(Auth::guard('admin')->attempt(['username'=> $username, 'password'=> $password])){
+       return redirect()->intended('/admin/dashboard');
       } else {
-         return redirect()->back()->with('warning', 'Invalid Email or Password');
+         return redirect()->back()->with('alert', 'Invalid Email or Password');
       }
     }
 

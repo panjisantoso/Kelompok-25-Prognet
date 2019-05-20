@@ -32,6 +32,13 @@
     <link rel="stylesheet" href="/assets/css/style.css">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+    <style>
+    article, aside, figure, footer, header, hgroup, 
+    menu, nav, section { display: block; }
+    </style>
 </head>
 
 <body>
@@ -51,7 +58,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="/dashboard1"> <i class="menu-icon fa fa-dashboard"></i>Dashboard</a>
+                        <a href="/admin"> <i class="menu-icon fa fa-dashboard"></i>Dashboard</a>
                     </li>
                     <h3 class="menu-title">Menu Admin</h3><!-- /.menu-title -->
                     
@@ -63,6 +70,9 @@
                     </li>
                     <li>
                         <a href="/admin/categories"> <i class="menu-icon fa fa-file"></i>Product Categories</a>
+                    </li>
+                    <li>
+                        <a href="/admin/discounts"> <i class="menu-icon fa fa-dollar"></i>Discounts</a>
                     </li>
                     <!-- <li>
                         <a href="/admin/categories-details"> <i class="menu-icon fa fa-file"></i>Product Category Details</a>
@@ -184,12 +194,27 @@
 <script src="/js/jquery.magnific-popup.min.js"></script>
 <script src="/js/aos.js"></script>
 
-<script src="/assets2/plugins/jquery-spinner/js/jquery.spinner.js"></script>
+<!-- <script src="/assets2/plugins/jquery-spinner/js/jquery.spinner.js"></script>
 
 <script src="/assets2/bundles/libscripts.bundle.js"></script>    
 <script src="/assets2/bundles/vendorscripts.bundle.js"></script>
-<script src="/assets2/bundles/mainscripts.bundle.js"></script>
+<script src="/assets2/bundles/mainscripts.bundle.js"></script> -->
+<script>
+function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 <script src="/js/main.js"></script>
 <script>
     (function($) {

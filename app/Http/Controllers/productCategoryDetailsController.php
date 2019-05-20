@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\CategoryDetail;
 use App\Categories;
 use App\Product;
+use App\Discount;
 use DB;
 class productCategoryDetailsController extends Controller
 {
@@ -21,7 +22,8 @@ class productCategoryDetailsController extends Controller
         ->join('product_categories', 'product_category_details.category_id','=', 'product_categories.id')
         ->orderByRaw('product_category_details.product_id DESC')
         ->get();
-        return view('details.list', compact('categoryDetails'));
+        $discounts = Discount::get();
+        return view('details.list', compact('categoryDetails','discounts'));
     }
 
     /**

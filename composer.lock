@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94d4bf9ac7f4a933030e46a346ee2917",
+    "content-hash": "d5f2bf469209f70463856832db770bdc",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1392,6 +1392,47 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "rizalafani/rajaongkirlaravel",
+            "version": "v1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rizalafani/rajaongkirlaravel.git",
+                "reference": "19ca5b5cf2a02384019cc4812c9dfe67c4795232"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rizalafani/rajaongkirlaravel/zipball/19ca5b5cf2a02384019cc4812c9dfe67c4795232",
+                "reference": "19ca5b5cf2a02384019cc4812c9dfe67c4795232",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "rizalafani\\rajaongkirlaravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ahmad Rizal Afani",
+                    "email": "ahmadrizalafani@gmail.com"
+                }
+            ],
+            "description": "Raja Ongkir API Laravel 5",
+            "keywords": [
+                "application programming interface",
+                "laravel",
+                "rajaongkir"
+            ],
+            "time": "2015-11-08T23:28:56+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

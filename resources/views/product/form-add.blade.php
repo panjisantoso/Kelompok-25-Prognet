@@ -74,7 +74,9 @@
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <label for="c_address" class="text-black">File Gambar<span class="text-danger">*</span></label>
-                                    <input type="file" class="form-control" required name="image[]" id="image" multiple accept="image/*" placeholder="Masukkan FIle Gambar">
+                                    <img id="blah" src="#" />
+                                    <input type="file" onchange="readURL(this);" class="form-control" required name="image[]" id="image" multiple accept="image/*" placeholder="Masukkan FIle Gambar">
+                                        
                                 </div>
                             </div>
                             <div class="form-group">

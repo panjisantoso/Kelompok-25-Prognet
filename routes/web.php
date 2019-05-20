@@ -17,16 +17,20 @@ Route::get('/register', 'userController@register');
 Route::post('/registerPost', 'userController@registerPost');
 Route::post('/logout', 'userController@destroy');
 
+Route::resource('/admin/discounts','discountController');
 Route::resource('/admin/product','productController');
 Route::resource('/admin/couriers','courierController');
 Route::resource('/admin/categories','categoriesController');
 Route::resource('/admin/product-images', 'productImageController');
 Route::resource('/admin/categories-details', 'productCategoryDetailsController');
 Route::get('/admin/product/{id}/aktif','productController@aktif');
-Route::get('/admin','adminController@dashboard');
+Route::get('/admin/dashboard','adminController@dashboard');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+Route::get('/admin', function () {
+    return view('adminlogin');
 });
 Route::get('/index', function () {
     return view('index');
