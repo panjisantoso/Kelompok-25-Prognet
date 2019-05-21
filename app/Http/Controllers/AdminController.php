@@ -19,25 +19,20 @@ class AdminController extends Controller
 
     public function registerAdmin(Request $request)
     {
+      // validate the data
       $this->validate($request, [
-       'email'=> 'required|unique:users|email|max:255',
-       'name'=>  'required',
-       'password'=> 'required|min:6|confirmed',
-       'profile_image'=>'required',
-       'phone'=>'required',
-       'username'=>'required'
-
-    ]); 
-
-
-     Admin::create([
-          'name'=>$request->name,
-          'email'=>$request->email,
-          'password'=>bcrypt($request->password),
-          'phone'=>$request->phone,
-          'username'=>$request->username
-    ]);
-      return redirect()->intended('/home/admin');
+        'name'          => 'required',
+        'username'         => 'required',
+        'password'      => 'required'
+      ]);
+      // store in the database
+      $admins = new Admin;
+      $admins->name = $request->name;
+      $admins->username = $request->username;
+      $admins->phone = $request->phone;
+      $admins->password=bcrypt($request->password);
+      $admins->save();
+      return redirect('/login/admin');
     }
 
     public function loginAdmin()
@@ -53,11 +48,14 @@ class AdminController extends Controller
       ]);
      $username = $request->username;
      $password = $request->password;
-    //  $remember = $request->remember_token;
-
-     if(Auth::guard('admin')->attempt(['username'=> $username, 'password'=> $password])){
+     $remember = $request->remember;
+    
+    $loginadmin = Auth::guard('admin')->attempt(['username'=> $username, 'password'=> $password],$remember);
+        // return response()->json($loginadmin);
+     if($loginadmin){
        return redirect()->intended('/admin/dashboard');
       } else {
+        
          return redirect()->back()->with('alert', 'Invalid Email or Password');
       }
     }

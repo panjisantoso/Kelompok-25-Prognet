@@ -4,7 +4,10 @@
     <title>E-Commerce &mdash; Kelompok 25</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    
+    <link rel="stylesheet" href="/assets2/plugins/bootstrap/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="/assets2/css/ecommerce.css">
+    <link rel="stylesheet" href="/assets2/css/color_skins.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
     <link rel="stylesheet" href="/fonts/icomoon/style.css">
 
@@ -21,11 +24,17 @@
     <link rel="stylesheet" href="/vendors/nice-select/css/nice-select.css">
     <link rel="stylesheet" href="/vendors/animate-css/animate.css">
     <link rel="stylesheet" href="/vendors/jquery-ui/jquery-ui.css">
-
+    <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/css/aos.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/style.css">
-    
+    <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+    <style>
+    article, aside, figure, footer, header, hgroup, 
+    menu, nav, section { display: block; }
+    </style>
   </head>
   <body>
   
@@ -44,7 +53,7 @@
 
             <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
               <div class="site-logo">
-                <a href="index.html" class="js-logo-clone">Shoppers</a>
+                <a href="/index" class="js-logo-clone">Shoppers</a>
               </div>
             </div>
 
@@ -110,9 +119,9 @@
               </ul>
             </li>
             <li class="has-children">
-            <li><a href="/admin">Admin</a></li>
+            <!-- <li><a href="/admin">Admin</a></li> -->
             
-            <li><a href="shop.html">Shop</a></li>
+            <li><a href="/shop">Shop</a></li>
             <li><a href="#">Catalogue</a></li>
             <li><a href="#">New Arrivals</a></li>
             <li><a href="contact.html">Contact</a></li>
