@@ -7,6 +7,7 @@ use App\Transaction;
 use App\Transaction_det;
 use App\Notifications\UserNotification;
 use App\User;
+use App\Admin;
 
 class TransactionAdminController extends Controller
 {
@@ -71,6 +72,13 @@ class TransactionAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function markReadAdmin(){
+        $admin = Admin::find(1);
+        
+        $admin->unreadNotifications()->update(['read_at' => now()]);
+        return response()->json($admin);
+    }
+
     public function edit($id)
     {
         //
@@ -87,14 +95,18 @@ class TransactionAdminController extends Controller
     {
         $transaction = Transaction::where('id',$id)->get()->first();
         if ($transaction->status == 'unverified') {
-            
             $transaction->status = 'verified';
             $transaction->save();
+            $tuser= Transaction::where('id',$id)->first();
+            $user = User::find($tuser->user_id);
+            $user->notify(new UserNotification("<a href = '/transaction/$id'>Transaksi anda sudah Verified</a>"));
         }
         else{
 
             $transaction->status = 'delivered';
             $transaction->save(); 
+            $user = User::find($tuser->user_id);
+            $user->notify(new UserNotification("<a href = '/transaction/$id'>Transaksi anda sudah Delivered</a>"));   
         }
         
         return redirect('/admin/transaction');
