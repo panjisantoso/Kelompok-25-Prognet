@@ -39,7 +39,7 @@
                         <a >
                             <img src="/{{ $images->image_name }}" alt="Image placeholder" class="img-fluid">
                         </a>   
-                       @break
+                      @break
                     @endif
                 @endforeach
                 </figure>
@@ -47,11 +47,12 @@
                     <h3><a >{{ $products[$i-1]->product_name }}</a></h3>
                     <p class="mb-0">{{ format_rupiah($products[$i-1]->price)}}</p>
                     <p class="text-primary font-weight-bold"></p>
+
                     <form action="/shop/{{$products[$i-1]->id}}" method="GET">
-                <button type="submit">
-                    <i class="fa fa-edit">Shop Now</i>
-                </button>
-              </form>
+                      <button type="submit">
+                          <i class="fa fa-edit">SHOP NOW</i>
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
@@ -60,7 +61,7 @@
             @endfor
           
             </div>
-           
+          
           </div>
 
           <div class="col-md-3 order-1 mb-5 mb-md-0">
