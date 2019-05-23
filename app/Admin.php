@@ -28,6 +28,11 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function notifications()
+    {
+        return $this->morphMany(DatabaseAdminNotif::class, 'notifiable')->orderBy('created_at', 'desc');
+    }
+
 
     /**
      * The attributes that should be cast to native types.
