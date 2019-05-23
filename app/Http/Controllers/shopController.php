@@ -30,15 +30,9 @@ class shopController extends Controller
         $products = Product::get();
         $categories = Categories::get();
         $discounts = Product::join('discounts','products.id','=','discounts.id_product')->get();
-<<<<<<< HEAD
         return view('shop',compact('productsjoin','productImages','products','discounts','categories'));
-=======
-        
-        
-        return view('shop',compact('productsjoin','productImages','products','discounts'));
->>>>>>> 121d55e35f2901cfec150a3468ada545d76baba4
     }
-    
+   
     /**
      * Show the form for creating a new resource.
      *
