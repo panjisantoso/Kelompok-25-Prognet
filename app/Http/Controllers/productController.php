@@ -109,7 +109,7 @@ class productController extends Controller
         }
         auth()->user()->notify(new transaksiBaru('bramasta ganteng'));
         $products = Product::get();
-        return view("product.list", compact("products"));
+        return redirect('/admin/product');
     }
 
     /**

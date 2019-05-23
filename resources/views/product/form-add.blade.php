@@ -40,6 +40,7 @@
                                         <div class="form-check">
                                         @foreach($category as $cat)
                                             <input type="checkbox" id="category_id" name="category_id[]" value="{{ $cat->id }}" class="form-check-input">{{ $cat->category_name }}
+                                            <br>
                                         @endforeach
                                         </div>
                                     </div>
