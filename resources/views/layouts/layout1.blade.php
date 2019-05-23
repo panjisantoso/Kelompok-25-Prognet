@@ -87,17 +87,23 @@
                     @endauth
                 </div>
             @endif
-                <ul>
-                  <li><a href="#"><span class="icon icon-person"></span></a></li>
-                  <li><a href="#"><span class="icon icon-heart-o"></span></a></li>
-                  <li>
-                    <a href="cart.html" class="site-cart">
-                      <span class="menu-icon fa fa-gift"></span>
-                      <span class="count">2</span>
-                    </a>
-                  </li> 
-                  <li class="d-inline-block d-md-none ml-md-0"><a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a></li>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <span class="glyphicon glyphicon-globe"></i><strong>Notification</strong>
+                  <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        @foreach($notif as $notif)
+                                <li><a href=""> {{$notif->data}}</a></li>
+                        @endforeach
+                    </li>
+                   
+                   
                 </ul>
+                <!-- /.dropdown-alerts -->
+            </li>
               </div> 
             </div>
 

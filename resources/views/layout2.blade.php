@@ -115,23 +115,8 @@
 
             <div class="header-menu">
                 <!-- /.dropdown -->
- <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-      <span class="glyphicon glyphicon-globe"></i> notification
-      <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
-    </a>
-    <ul class="dropdown-menu dropdown-alerts">
-        <li>
-            @foreach($notif as $notif)
-                    <li><a href=""> {{$notif->data}}</a></li>
-            @endforeach
-        </li>
-       
-       
-    </ul>
-    <!-- /.dropdown-alerts -->
-</li>
-                <div class="col-sm-7">
+                      
+          <div class="col-sm-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                     <div class="header-left">
                         <button class="search-trigger"><i class="fa fa-search"></i></button>
@@ -161,6 +146,23 @@
                                 <button type="submit" ><i class="fa fa-power-off"></i>Log Out</button>
                             </form>
                         </div>
+                        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+                        <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                              <span class="glyphicon glyphicon-globe"></i><strong>Notification</strong>
+                              <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                                <li>
+                                    @foreach($notif as $notif)
+                                            <li><a href=""> {{$notif->data}}</a></li>
+                                    @endforeach
+                                </li>
+                               
+                               
+                            </ul>
+                            <!-- /.dropdown-alerts -->
+                        </li>
                     </div>
 
                     <div class="language-select dropdown" id="language-select">

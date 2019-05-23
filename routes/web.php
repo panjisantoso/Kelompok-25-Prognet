@@ -19,6 +19,7 @@ Route::post('/signin', 'userController@signin');
 Route::get('/register', 'userController@register');
 Route::post('/registerPost', 'userController@registerPost');
 Route::post('/logout', 'userController@destroy');
+Route::post('/markRead','TransactionController@markRead');
 
 Route::group(['middleware'=>'auth:admin'], function(){
     Route::resource('/admin/discounts','discountController');
