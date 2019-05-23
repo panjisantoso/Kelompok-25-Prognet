@@ -10,6 +10,7 @@ use App\ProductImage;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use File;
+use App\Notifications\transaksiBaru;
 
 class productController extends Controller
 {
@@ -106,9 +107,9 @@ class productController extends Controller
             }
             
         }
-
+        auth()->user()->notify(new transaksiBaru('bramasta ganteng'));
         $products = Product::get();
-        return view("product.list", compact("products"));
+        return redirect('/admin/product');
     }
 
     /**

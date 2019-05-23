@@ -35,10 +35,15 @@
     <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+
     <style>
     article, aside, figure, footer, header, hgroup, 
     menu, nav, section { display: block; }
     </style>
+    @php
+    $jum = DB::table('admin_notifications')->where('read_at',NULL)->count();
+    $notif = DB::table('admin_notifications')->where('read_at',NULL)->get();
+    @endphp
 </head>
 
 <body>
@@ -122,6 +127,23 @@
                         Hallo
                            
                     </div>
+ <!-- /.dropdown -->
+ <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <span class="glyphicon glyphicon-globe"></i> notification
+          <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
+        </a>
+        <ul class="dropdown-menu dropdown-alerts">
+            <li>
+                @foreach($notif as $notif)
+                        <li><a href=""> {{$notif->data}}</a></li>
+                @endforeach
+            </li>
+           
+           
+        </ul>
+        <!-- /.dropdown-alerts -->
+    </li>
                 </div>
 
                 <div class="col-sm-5">
@@ -257,6 +279,8 @@ function readURL(input) {
             return parseInt(uang).toLocaleString(['ban','id']);
         }
 </script>
+ <!-- /.dropdown -->
+
 @yield('script')
 
 </body>
