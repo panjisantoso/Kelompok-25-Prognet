@@ -12,6 +12,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "rizalafani/rajaongkir": "^1.1",
         "rizalafani/rajaongkirlaravel": "^1.0"
     },
     "require-dev": {

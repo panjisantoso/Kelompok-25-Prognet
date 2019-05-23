@@ -103,6 +103,8 @@ class discountController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $discounts = Discount::find($id);
+        $discounts->delete();
+        return redirect('/admin/discounts');
     }
 }

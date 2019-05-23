@@ -74,6 +74,11 @@
                     <li>
                         <a href="/admin/discounts"> <i class="menu-icon fa fa-dollar"></i>Discounts</a>
                     </li>
+                    <form action="/logout/admin" method="POST">
+                                @csrf
+
+                                <button type="submit" ><i class="fa fa-power-off"></i>Log Out</button>
+                            </form>
                     <!-- <li>
                         <a href="/admin/categories-details"> <i class="menu-icon fa fa-file"></i>Product Category Details</a>
                     </li>
