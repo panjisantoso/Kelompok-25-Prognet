@@ -41,9 +41,10 @@
     menu, nav, section { display: block; }
     </style>
     @php
-    $jum = DB::table('admin_notifications')->where('read_at',NULL)->count();
-    $notif = DB::table('admin_notifications')->where('read_at',NULL)->get();
-    @endphp
+    $id = Auth::id();
+    $jum = auth()->user()->unreadNotifications->count();
+    $notif = DB::table('admin_notifications')->where('notifiable_id',$id)->get();
+@endphp
 </head>
 
 <body>
@@ -108,7 +109,23 @@
         <header id="header" class="header">
 
             <div class="header-menu">
-
+                <!-- /.dropdown -->
+ <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      <span class="glyphicon glyphicon-globe"></i> notification
+      <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
+    </a>
+    <ul class="dropdown-menu dropdown-alerts">
+        <li>
+            @foreach($notif as $notif)
+                    <li><a href=""> {{$notif->data}}</a></li>
+            @endforeach
+        </li>
+       
+       
+    </ul>
+    <!-- /.dropdown-alerts -->
+</li>
                 <div class="col-sm-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
                     <div class="header-left">
@@ -122,23 +139,6 @@
                         Hallo
                            
                     </div>
- <!-- /.dropdown -->
- <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <span class="glyphicon glyphicon-globe"></i> notification
-          <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
-        </a>
-        <ul class="dropdown-menu dropdown-alerts">
-            <li>
-                @foreach($notif as $notif)
-                        <li><a href=""> {{$notif->data}}</a></li>
-                @endforeach
-            </li>
-           
-           
-        </ul>
-        <!-- /.dropdown-alerts -->
-    </li>
                 </div>
 
                 <div class="col-sm-5">
@@ -243,6 +243,8 @@ function readURL(input) {
     }
 </script>
 <script src="/js/main.js"></script>
+
+@yield('script')
 <script>
     (function($) {
         "use strict";
@@ -273,11 +275,40 @@ function readURL(input) {
             uang = uang.replace(/\./g, "");
             return parseInt(uang).toLocaleString(['ban','id']);
         }
-</script>
- <!-- /.dropdown -->
 
-@yield('script')
 
 </body>
 
 </html>
+<script src="{{asset('frontEnd/js/jquery.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#readnotif').click(function(){
+            console.log("terklik");
+            var baseUrl = window.location.protocol+"//"+window.location.host;
+            $.ajax({
+                  url: baseUrl+'/markRead',  
+                  type : 'post',
+                  dataType: 'JSON',
+                  data: {
+                    "_token": "{{ csrf_token() }}",
+                    
+                    },
+                  success:function(response){
+                        location.reload();
+                  },
+                  error:function(){
+                    alert("GAGAL");
+                  }
+              });
+        });
+    });
+</script>

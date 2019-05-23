@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use App\AdminNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -30,7 +31,7 @@ class Admin extends Authenticatable
     ];
     public function notifications()
     {
-        return $this->morphMany(DatabaseAdminNotif::class, 'notifiable')->orderBy('created_at', 'desc');
+        return $this->morphMany(AdminNotification::class, 'notifiable')->orderBy('created_at', 'desc');
     }
 
 

@@ -10,7 +10,8 @@ use App\ProductImage;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use File;
-use App\Notifications\transaksiBaru;
+use App\Notifications\AdminNotification;
+use Illuminate\Notifications\Notification;
 
 class productController extends Controller
 {
@@ -59,6 +60,7 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
+        auth()->user()->notify(new AdminNotification("dddd"));
         date_default_timezone_set('Asia/Kuala_Lumpur');
 
         $produks = new Product;
@@ -107,8 +109,7 @@ class productController extends Controller
             }
             
         }
-        auth()->user()->notify(new transaksiBaru('bramasta ganteng'));
-        $products = Product::get();
+
         return redirect('/admin/product');
     }
 
@@ -135,7 +136,7 @@ class productController extends Controller
                     
                     $file->move(public_path().'/files/', $name);
                     $image = new ProductImage;
-                    $image->product_id = $id;
+                    $image->product_id =$id;
                     $image->image_name=$path;
                     $image->save();
                 $i++;    
@@ -225,4 +226,11 @@ class productController extends Controller
         $products->save();
         return redirect("/admin/product")->with("alert-success", "Berhasil Mengaktifkan product");
     }
+    public function markReadAdmin(){
+        $admin = Admin::find(6);
+        
+        $admin->unreadNotifications()->update(['read_at' => now()]);
+        return response()->json($admin);
+    }
+
 }

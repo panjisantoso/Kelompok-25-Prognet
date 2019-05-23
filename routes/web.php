@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\User;
+use App\Notifications\transaksiBaru;
+use App\UserNotification;
 
 Route::get('/userlogin', 'userController@index');
 Route::post('/signin', 'userController@signin');
@@ -26,6 +29,7 @@ Route::group(['middleware'=>'auth:admin'], function(){
     Route::resource('/admin/categories-details', 'productCategoryDetailsController');
     Route::get('/admin/product/{id}/aktif','productController@aktif');
     Route::get('/admin/dashboard','adminController@dashboard');
+    Route::post('/admin/markReadAdmin','productController@markReadAdmin')->name('admin.markReadAdmin');
 });
 
 Route::get('/', function () {

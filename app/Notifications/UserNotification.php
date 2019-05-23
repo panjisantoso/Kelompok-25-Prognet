@@ -7,8 +7,9 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class ulasan extends Notification
+class UserNotification extends Notification
 {
+    protected $data;
     use Queueable;
 
     /**
@@ -16,9 +17,9 @@ class ulasan extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($data)
     {
-        //
+        $this->data=$data;
     }
 
     /**
@@ -29,7 +30,7 @@ class ulasan extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -38,13 +39,13 @@ class ulasan extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
-    }
+    // public function toMail($notifiable)
+    // {
+    //     return (new MailMessage)
+    //                 ->line('The introduction to the notification.')
+    //                 ->action('Notification Action', url('/'))
+    //                 ->line('Thank you for using our application!');
+    // }
 
     /**
      * Get the array representation of the notification.
@@ -54,8 +55,6 @@ class ulasan extends Notification
      */
     public function toArray($notifiable)
     {
-        return [
-            'status' => transc
-        ];
+        return $this->data;
     }
 }

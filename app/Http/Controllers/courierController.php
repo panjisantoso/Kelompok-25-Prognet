@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Courier;
+use App\Notifications\AdminNotification;
 
 class courierController extends Controller
 {
@@ -46,6 +47,7 @@ class courierController extends Controller
         $couriers->created_at = date('Y-m-d H:i:s');
         $couriers->updated_at = date('Y-m-d H:i:s');
         $couriers->save();
+        auth()->user()->notify(new AdminNotification("dddd"));
 
         return redirect("/admin/couriers");
     }
