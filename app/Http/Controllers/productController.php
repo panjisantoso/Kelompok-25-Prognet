@@ -36,7 +36,7 @@ class productController extends Controller
         $discounts = Product::join('discounts','products.id','=','discounts.id_product')->get();
         // $productCategory = CategoryDetail::join('product_categories','product_categories.id','=','product_category_details.category_id');
         // $categoryDetails = CategoryDetail::get();
-        return view("product.list", compact('discounts','productsjoin',"products",'detail','item','productImages','productCategory','CategoryDetail'));
+        return view("product.list", compact('discounts','productsjoin',"products",'productImages'));
     }
 
     /**

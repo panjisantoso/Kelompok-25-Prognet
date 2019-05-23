@@ -26,6 +26,7 @@ Route::group(['middleware'=>'auth:admin'], function(){
     Route::resource('/admin/categories-details', 'productCategoryDetailsController');
     Route::get('/admin/product/{id}/aktif','productController@aktif');
     Route::get('/admin/dashboard','adminController@dashboard');
+    Route::resource('/admin/transaction','transactionAdminController');
 });
 
 Route::get('/', function () {
@@ -58,3 +59,24 @@ Route::get('pic',function (){
     return view('pic.pic');
 });
 Route::post('saved','test2Controller@save');
+
+//cart
+Route::post('/addToCart','CartController@addToCart')->name('addToCart');
+Route::get('/viewcart','CartController@index');
+Route::get('/cart/deleteItem/{id}','CartController@deleteItem');
+Route::post('/cart/update/{cart}','CartController@update')->name('cart.update');
+
+//checkout
+Route::get('/check-out','CheckOutController@index');
+Route::get('/check-shipping','CheckOutController@checkshipping');
+Route::post('/submit-checkout','CheckOutController@submitcheckout');
+
+//order review
+Route::get('/order-review','OrderController@index');
+Route::post('/cod','OrderController@cod');
+
+//transaction
+Route::resource('/transaction','TransactionController');
+
+//review
+Route::resource('/review','ReviewController');

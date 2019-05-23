@@ -4,7 +4,14 @@
     <title>E-Commerce &mdash; Kelompok 25</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <link href="/frontEnd/css/select2.css" rel="stylesheet">
+    <link href="/frontEnd/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/frontEnd/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/frontEnd/css/prettyPhoto.css" rel="stylesheet">
+    <link href="/frontEnd/css/price-range.css" rel="stylesheet">
+    <link href="/frontEnd/css/animate.css" rel="stylesheet">
+    <link href="/frontEnd/css/main.css" rel="stylesheet">
+    <link href="/frontEnd/css/responsive.css" rel="stylesheet">
     <link rel="stylesheet" href="/assets2/plugins/bootstrap/css/bootstrap.min.css">    
     <link rel="stylesheet" href="/assets2/css/ecommerce.css">
     <link rel="stylesheet" href="/assets2/css/color_skins.css">
@@ -28,6 +35,11 @@
     <link rel="stylesheet" href="/css/aos.css">
     <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/css/style.css">
+ 
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
@@ -123,8 +135,8 @@
             <!-- <li><a href="/admin">Admin</a></li> -->
             
             <li><a href="/shop">Shop</a></li>
-            <li><a href="#">Catalogue</a></li>
-            <li><a href="#">New Arrivals</a></li>
+            <li><a href="/transaction">Transaction</a></li>
+            <li><a href="/viewcart">Cart</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
@@ -232,6 +244,33 @@
 	<script src="/vendors/counter-up/jquery.waypoints.min.js"></script>
 	<script src="/vendors/counter-up/jquery.counterup.js"></script>
 	<script src="/js/theme.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script>
+        $(".cart_quantity_delete").click(function () {
+            var id=$(this).attr('rel');
+            var deleteFunction=$(this).attr('rel1');
+            swal({
+                title:'Are you sure?',
+                text:"You won't be able to revert this!",
+                type:'warning',
+                showCancelButton:true,
+                confirmButtonColor:'#3085d6',
+                cancelButtonColor:'#d33',
+                confirmButtonText:'Yes, delete it!',
+                cancelButtonText:'No, cancel!',
+                confirmButtonClass:'btn btn-success',
+                cancelButtonClass:'btn btn-danger',
+                buttonsStyling:false,
+                reverseButtons:true
+            },function () {
+                window.location.href="/cart/deleteItem/"+id;
+            });
+        });
     
+    </script>
   </body>
 </html>

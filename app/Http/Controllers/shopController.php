@@ -9,6 +9,8 @@ use App\Categories;
 use App\ProductImage;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Review;
+use App\Discount;
 use File;
 
 class shopController extends Controller
@@ -27,6 +29,8 @@ class shopController extends Controller
         $productImages = ProductImage::get();
         $products = Product::get();
         $discounts = Product::join('discounts','products.id','=','discounts.id_product')->get();
+        
+        
         return view('shop',compact('productsjoin','productImages','products','discounts'));
     }
     
@@ -59,6 +63,15 @@ class shopController extends Controller
      */
     public function show($id)
     {
+        $detail_product=Product::select('products.id', 'product_name','product_rate','description','stock','price','image_name','product_category_details.category_id')
+        	->join('product_images','products.id','=','product_images.product_id')
+        	->join('product_category_details','products.id','=','product_category_details.product_id')
+        	->groupBy('products.id')->where('products.id',$id)
+        	->get()->first();
+        $imagesGalleries=ProductImage::where('product_id',$id)->get();
+        $dis = Discount::where('id_product',$id)->where('start','<=',CARBON::NOW())->where('end','>=',CARBON::NOW())->get()->first();
+        $review = Review::join('users','product_reviews.user_id','=','users.id')->where('product_id',$id)->orderBy('product_reviews.created_at','desc')->get();
+        
         $productImages = ProductImage::get();
         $products = Product::get();
         $productid = Product::find($id);
@@ -69,7 +82,7 @@ class shopController extends Controller
         ->get();
         
         $productImages = ProductImage::where('product_images.product_id',$id)->get();
-        return view("shopdetail", compact('detail','products','productid','productImages','productsjoin','productImages'));
+        return view("shopdetail", compact('detail_product','imagesGalleries','dis','review','detail','products','productid','productImages','productImages'));
   
     }
 
