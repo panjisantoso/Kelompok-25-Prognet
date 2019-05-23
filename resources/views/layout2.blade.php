@@ -71,6 +71,11 @@
                     <li>
                         <a href="/admin/product"> <i class="menu-icon fa fa-gift"></i>Product</a>
                     </li>
+
+                    <li>
+                        <a href="/admin/transaction"> <i class="menu-icon fa fa-gift"></i>Transaction</a>
+                    </li>
+
                     <li>
                         <a href="/admin/couriers"> <i class="menu-icon fa fa-truck"></i>Courier</a>
                     </li>
