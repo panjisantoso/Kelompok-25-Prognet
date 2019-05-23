@@ -275,22 +275,7 @@ function readURL(input) {
         }
 </script>
  <!-- /.dropdown -->
- <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <span class="glyphicon glyphicon-globe"></i> notification
-          <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
-        </a>
-        <ul class="dropdown-menu dropdown-alerts">
-            <li>
-                @foreach($notif as $notif)
-                        <li><a href=""> {{$notif->data}}</a></li>
-                @endforeach
-            </li>
-           
-           
-        </ul>
-        <!-- /.dropdown-alerts -->
-    </li>
+
 @yield('script')
 
 </body>
