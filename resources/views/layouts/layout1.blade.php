@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
     <title>E-Commerce &mdash; Kelompok 25</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -49,7 +50,11 @@
     </style>
   </head>
   <body>
-  
+      @php
+      $id = Auth::id();
+      $jum = auth()->user()->unreadNotifications->count();
+      $notif = DB::table('user_notifications')->where('notifiable_id',$id)->get();
+  @endphp
   <div class="site-wrap">
     <header class="site-navbar" role="banner">
       <div class="site-navbar-top">
@@ -70,7 +75,22 @@
             </div>
 
             <div class="col-6 col-md-4 order-3 order-md-3 text-right">
-            
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+                <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      <span class="glyphicon glyphicon-globe"></i><strong>Notification</strong>
+                      <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                            @foreach($notif as $notif)
+                                    <li><a href=""> {{$notif->data}}</a></li>
+                            @endforeach
+                        </li>
+                       
+                       
+                    </ul>
+                    <!-- /.dropdown-alerts -->
+                </li>
               <div class="site-top-icons">
               <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
@@ -87,23 +107,7 @@
                     @endauth
                 </div>
             @endif
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-            <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  <span class="glyphicon glyphicon-globe"></i><strong>Notification</strong>
-                  <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
-                </a>
-                <ul class="dropdown-menu dropdown-alerts">
-                    <li>
-                        @foreach($notif as $notif)
-                                <li><a href=""> {{$notif->data}}</a></li>
-                        @endforeach
-                    </li>
-                   
-                   
-                </ul>
-                <!-- /.dropdown-alerts -->
-            </li>
+            
               </div> 
             </div>
 

@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\AdminNotification;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -15,6 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
+    protected $table = 'users';
     protected $fillable = [
         'name', 'email', 'password', 'profil_image','status',
     ];
@@ -36,5 +38,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function notifications(){
+        return $this->morphMany(UserNotification::class, 'notifiable')->orderBy('created_at', 'desc');
+    }
  
 }

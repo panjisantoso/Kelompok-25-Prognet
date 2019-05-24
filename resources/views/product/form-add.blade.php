@@ -34,6 +34,14 @@
                                     <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Masukkan Nama Produk">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label >Product Category</label>
+                                    <select required class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" name="category_name[]">
+                                        @foreach ($category as $data_category)
+                                            <option value="{{$data_category->id}}">{{$data_category->category_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                                 <div class="row form-group">
                                 <div class="col col-md-3"><label class=" form-control-label">Kategori Produk</label></div>
                                     <div class="col col-md-9">
