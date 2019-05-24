@@ -30,7 +30,7 @@ Route::group(['middleware'=>'auth:admin'], function(){
     Route::resource('/admin/categories-details', 'productCategoryDetailsController');
     Route::get('/admin/product/{id}/aktif','productController@aktif');
     Route::get('/admin/dashboard','adminController@dashboard');
-    Route::post('/admin/markReadAdmin','productController@markReadAdmin')->name('admin.markReadAdmin');
+    Route::post('/admin/markReadAdmin','transactionAdminController@markReadAdmin')->name('admin.markReadAdmin');
     Route::resource('/admin/transaction','transactionAdminController');
 });
 
@@ -56,7 +56,7 @@ Route::post('/login/admin', 'AdminController@adminAuth')->name('login.admin');
 
 //admin routes we want protected 
 Route::group(['middleware'=>'auth:admin'], function(){
-    Route::get('/home/admin', 'AdminController@home')->middleware('verified');;
+    Route::get('/home/admin', 'AdminController@dashboard')->middleware('verified');;
     Route::post('/logout/admin', 'AdminController@logout')->name('logout.admin');
 });
 

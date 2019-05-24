@@ -49,12 +49,19 @@
     menu, nav, section { display: block; }
     </style>
   </head>
-  <body>
+  <body> 
+    @if(Auth::id())
+    
       @php
       $id = Auth::id();
       $jum = auth()->user()->unreadNotifications->count();
-      $notif = DB::table('user_notifications')->where('notifiable_id',$id)->get();
+      $notif = DB::table('user_notifications')->where('read_at', NULL)->get();
+    @endphp
+  @else
+  @php
+    $jum = 0;
   @endphp
+  @endif
   <div class="site-wrap">
     <header class="site-navbar" role="banner">
       <div class="site-navbar-top">
@@ -79,6 +86,7 @@
                 <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                       <span class="glyphicon glyphicon-globe"></i><strong>Notification</strong>
+<<<<<<< HEAD
                       <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-alerts">
@@ -86,6 +94,20 @@
                                     <li><a href=""> {{$notif->data}}</a></li>
                             @endforeach
                         </li>
+=======
+                      <span class="badge">{{$jum}}</span>
+                    </a>
+                    @if (Auth::id())
+                    <ul class="dropdown-menu dropdown-alerts">
+                            @foreach($notif as $notif)
+                                    <li><a href="{{Route('admin.markReadAdmin')}}"> {{$notif->data}}</a></li>
+                            @endforeach
+                      @else
+                      @php
+                      $notif = 0;
+                      @endphp
+                      @endif
+>>>>>>> 34c34d17aa67150fb35f3809f166b83228a01c9b
                        
                        
                     </ul>
@@ -284,3 +306,35 @@
     </script>
   </body>
 </html>
+<script src="{{asset('frontEnd/js/jquery.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#readnotif').click(function(){
+            console.log("terklik");
+            var baseUrl = window.location.protocol+"//"+window.location.host;
+            $.ajax({
+                  url: baseUrl+'/markRead',  
+                  type : 'post',
+                  dataType: 'JSON',
+                  data: {
+                    "_token": "{{ csrf_token() }}",
+                    
+                    },
+                  success:function(response){
+                        location.reload();
+                  },
+                  error:function(){
+                    alert("GAGAL");
+                  }
+              });
+        });
+    });
+</script>

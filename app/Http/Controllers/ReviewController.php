@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Review;
 use App\Product;
 use DB;
+use App\Admin;
+use App\Notifications\AdminNotification;
 use App\Quotation;
 use Illuminate\Http\Request;
 
@@ -34,6 +36,8 @@ class ReviewController extends Controller
             $product->product_rate = (int)$hasil;
             
             $product->save();
+            $admin = Admin::first();
+            $admin->notify(new AdminNotification("<a href='/admin/createResponse/$review->id'>ada Review baru pada product $product->product_name</a>"));
 
         }
 

@@ -28,12 +28,11 @@ class shopController extends Controller
         ->get();
         $productImages = ProductImage::get();
         $products = Product::get();
+        $categories = Categories::get();
         $discounts = Product::join('discounts','products.id','=','discounts.id_product')->get();
-        
-        
-        return view('shop',compact('productsjoin','productImages','products','discounts'));
+        return view('shop',compact('productsjoin','productImages','products','discounts','categories'));
     }
-    
+   
     /**
      * Show the form for creating a new resource.
      *

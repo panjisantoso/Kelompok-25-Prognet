@@ -60,7 +60,6 @@ class productController extends Controller
      */
     public function store(Request $request)
     {
-        auth()->user()->notify(new AdminNotification("dddd"));
         date_default_timezone_set('Asia/Kuala_Lumpur');
 
         $produks = new Product;

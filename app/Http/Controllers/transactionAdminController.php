@@ -74,7 +74,6 @@ class TransactionAdminController extends Controller
      */
     public function markReadAdmin(){
         $admin = Admin::find(1);
-        
         $admin->unreadNotifications()->update(['read_at' => now()]);
         return response()->json($admin);
     }
@@ -104,7 +103,8 @@ class TransactionAdminController extends Controller
         else{
 
             $transaction->status = 'delivered';
-            $transaction->save(); 
+            $transaction->save();
+            $tuser= Transaction::where('id',$id)->first();
             $user = User::find($tuser->user_id);
             $user->notify(new UserNotification("<a href = '/transaction/$id'>Transaksi anda sudah Delivered</a>"));   
         }
