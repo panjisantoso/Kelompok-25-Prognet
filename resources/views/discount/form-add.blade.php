@@ -35,7 +35,7 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-12">
-                                            <label for="c_address" class="text-black">Persentase Diskon<span class="text-danger">*</span></label>
+                                            <label for="c_address" class="text-black">Nama Produk<span class="text-danger">*</span></label>
                                             <select name="id_product" id="id_product" class="form-control">
                                                 @foreach($products as $p)
                                                     <option value="{{ $p->id }}">{{ $p->product_name }}</option>

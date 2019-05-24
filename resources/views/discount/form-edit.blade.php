@@ -36,6 +36,16 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-md-12">
+                                            <label for="c_address" class="text-black">Nama Produk<span class="text-danger">*</span></label>
+                                            <select name="id_product" id="id_product" class="form-control">
+                                                @foreach($products as $p)
+                                                    <option value="{{ $p->id }}" {{ $p->id == $discounts->id_product ? 'selected' : '' }} >{{ $p->product_name }}</option>
+                                                @endforeach
+                                            </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-12">
                                             <label for="c_address" class="text-black">Tanggal Mulai<span class="text-danger">*</span></label>
                                             <input type="date" class="form-control" id="start" name="start" value="{{ $discounts->start }}">
                                             </div>
