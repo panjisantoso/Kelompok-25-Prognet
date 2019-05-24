@@ -42,7 +42,8 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="row form-group">
+                                
+                                <!-- <div class="row form-group">
                                 <div class="col col-md-3"><label class=" form-control-label">Kategori Produk</label></div>
                                     <div class="col col-md-9">
                                         <div class="form-check">
@@ -52,7 +53,7 @@
                                         @endforeach
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 
                                 <div class="form-group row">
                                     <div class="col-md-12">
