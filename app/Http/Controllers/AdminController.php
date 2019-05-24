@@ -4,13 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Admin;
+use App\Transaction;
 use Auth;
+use carbon\Carbon;
+use DB;
 
 class AdminController extends Controller
 {
 
     public function dashboard(){
-      return view('dashboard1');
+      $tahun = CARBON::NOW()->format('Y');
+      $reportBulanan = Transaction::
+      select(DB::raw('MONTHNAME(created_at) as bulan'), DB::raw('COALESCE(SUM(total),0) as pendapatan'))
+          ->groupBy(DB::raw('MONTH(created_at)'))
+          ->where(DB::raw('YEAR(created_at)'),'=', $tahun)
+          ->where('status','success')
+          ->get();
+      
+      $reportTahunan = Transaction::
+      select(DB::raw('YEAR(created_at) as tahun'), DB::raw('COALESCE(SUM(total),0) as pendapatan'))
+          ->groupBy(DB::raw('YEAR(created_at)'))
+          ->where('status','success')
+          ->get();
+      return view('dashboard1',compact("reportBulanan","reportTahunan"));
     }
     public function create()
     {

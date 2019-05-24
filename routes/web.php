@@ -30,7 +30,7 @@ Route::group(['middleware'=>'auth:admin'], function(){
     Route::resource('/admin/categories-details', 'productCategoryDetailsController');
     Route::get('/admin/product/{id}/aktif','productController@aktif');
     Route::get('/admin/dashboard','adminController@dashboard');
-    Route::post('/admin/markReadAdmin','productController@markReadAdmin')->name('admin.markReadAdmin');
+    Route::post('/admin/markReadAdmin','transactionAdminController@markReadAdmin')->name('admin.markReadAdmin');
     Route::resource('/admin/transaction','transactionAdminController');
 });
 
