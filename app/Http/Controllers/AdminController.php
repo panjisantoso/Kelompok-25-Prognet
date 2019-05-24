@@ -76,10 +76,7 @@ class AdminController extends Controller
       }
     }
 
-  public function home()
-  {
-    return view('admin');
-  }
+
 
   public function logout()
   {
