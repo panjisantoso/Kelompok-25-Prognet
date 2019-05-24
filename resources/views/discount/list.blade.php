@@ -1,6 +1,6 @@
 @extends('layout2')
 
-@section('pageHeader', 'List Product')
+@section('pageHeader', 'List Discounts')
 
 @section('isi')
 
