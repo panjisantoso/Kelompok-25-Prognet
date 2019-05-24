@@ -26,6 +26,7 @@ class AdminController extends Controller
           ->groupBy(DB::raw('YEAR(created_at)'))
           ->where('status','success')
           ->get();
+        
       return view('dashboard1',compact("reportBulanan","reportTahunan"));
     }
     public function create()
