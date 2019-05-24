@@ -80,6 +80,11 @@ class TransactionController extends Controller
     {
         
     }
+    public function markRead(){
+        $user = User::find(Auth::id());
+        $user->unreadNotifications()->update(['read_at' => now()]);
+        return response()->json($user);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -110,11 +115,17 @@ class TransactionController extends Controller
         if ($status == 'delivered') {
             $transaction->status='success';
             $transaction->save();
+            $admin = Admin::first();
+            $admin->notify(new AdminNotification("<a href='/admin/transactionAdmin/$transaction->id'>ada transaksi yang berubah status menjadi Success</a>"));
             return redirect()->back();
         }
-        else{
-            $transaction->status='unverified';   
+
+    
+        else {
+            $transaction->status='unverified';
             $transaction->save();
+            $admin = Admin::first();
+            $admin->notify(new AdminNotification("<a href='/admin/transactionAdmin/$transaction->id'>ada transaksi yang berubah status menjadi Unverified</a>"));
         }
         
 
