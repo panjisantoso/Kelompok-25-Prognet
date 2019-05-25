@@ -26,7 +26,6 @@
 
                         <legend>Pengiriman</legend>
 
-                        {{-- <input type="hidden" name="pengiriman" value="{{$countries}}" > --}}
                         <div class="form-group {{$errors->has('billing_name')?'has-error':''}}">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" name="nama" id="name" value="{{$user_login->name}}">
@@ -40,16 +39,6 @@
                                 @for($i = 0; $i < count($countries); $i++ )
                                     <option value="{{$countries[$i]["postal_code"]}}">{{$countries[$i]["city_name"].', '.$countries[$i]["province"]}}</option>
 
-                                    {{-- <input type="hidden" name="provinsi" value="{{$countries[$i]["city_name"]}}"> --}}
-                                    {{-- <script type="text/javascript">
-                                        $(document).ready(function(){
-                                            $('#billing_city').click(function(){ 
-                                                var city = $('#billing_city').val();
-                                                console.log(city)
-                                                $('#postal').val(city);
-                                                event.preventDefault();
-                                            });
-                                    </script> --}}
                                 @endfor
                             </select>
                         </div>
@@ -83,9 +72,6 @@
 
                         </div>
 
-                        {{-- <span>
-                            <input type="checkbox" class="checkbox" name="checkme" id="checkme">Shipping Address same as Billing Address
-                        </span> --}}
                         <div style="text-align: center;">
                         <button type="submit" name="submit" class="btn btn-primary">Cek Ongkir</button>
                         </div>
@@ -126,15 +112,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
-                            <label>Ongkos Kirim</label>
-                            <input type="text" name="ongkir" id="ongkir" disabled="" class="form-control">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Total</label>
-                            <input type="text" name="total" id="total" disabled="" class="form-control">
-                        </div>
+                    
 
                         <div style="text-align: center;">
                             <button type="submit" name="submit" class="btn btn-primary">Review Order</button>
