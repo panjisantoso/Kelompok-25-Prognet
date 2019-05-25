@@ -76,7 +76,7 @@ class productController extends Controller
         $get_id_product = Product::select('id')
         ->orderBy('id','DESC')
         ->first();
-        foreach($request->category_id as $category){
+        foreach($request->category_name as $category){
             $category_details = new CategoryDetail;
             $category_details->product_id = $get_id_product->id;
             $category_details->category_id = $category;

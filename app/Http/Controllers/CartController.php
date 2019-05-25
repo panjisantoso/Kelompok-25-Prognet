@@ -61,7 +61,7 @@ class CartController extends Controller
                 $inputToCart['user_id']=Auth::id();
                 $count_duplicateItems=Cart::where('product_id',$inputToCart['product_id'])->where('user_id',$inputToCart['user_id'])->where('status','notyet')->count();
                 if($count_duplicateItems>0){
-                    return back()->with('message','This Item Added already');
+                    return back()->with('alert','This Item Added already');
                 }else{
                     
                     $cart = new Cart;
@@ -71,10 +71,10 @@ class CartController extends Controller
                     $cart->status = 'notyet';
                     $cart->save();
                     // return($cart);
-                    return back()->with('success','Add To Cart Already');
+                    return back()->with('alert-success','Add To Cart Already');
                 }
             }else{
-                return back()->with('message','Stock is not Available!');
+                return back()->with('alert','Stock is not Available!');
             }
         // }
     }

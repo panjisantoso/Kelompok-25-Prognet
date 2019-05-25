@@ -32,7 +32,19 @@ class shopController extends Controller
         $discounts = Product::join('discounts','products.id','=','discounts.id_product')->get();
         return view('shop',compact('productsjoin','productImages','products','discounts','categories'));
     }
-   
+    
+    public function filter(Request $request){
+        $productsjoin = DB::table('product_category_details')
+        ->join('products','product_category_details.product_id','=','products.id')
+        ->join('product_categories','product_category_details.category_id','=','product_categories.id')
+        ->where('category_id', $request->category_id)
+        ->get();
+        $productImages = ProductImage::get();
+        $products = Product::get();
+        $categories = Categories::get();
+        $discounts = Product::join('discounts','products.id','=','discounts.id_product')->get();
+        return view('shop',compact('productsjoin','productImages','products','discounts','categories'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -81,6 +93,7 @@ class shopController extends Controller
         ->get();
         
         $productImages = ProductImage::where('product_images.product_id',$id)->get();
+        
         return view("shopdetail", compact('detail_product','imagesGalleries','dis','review','detail','products','productid','productImages','productImages'));
   
     }

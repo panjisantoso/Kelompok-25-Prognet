@@ -5,17 +5,18 @@
     <title>E-Commerce &mdash; Kelompok 25</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/assets2/plugins/bootstrap/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="/assets2/css/ecommerce.css">
+    <link rel="stylesheet" href="/assets2/css/color_skins.css">
     <link href="/frontEnd/css/select2.css" rel="stylesheet">
-    <link href="/frontEnd/css/bootstrap.min.css" rel="stylesheet">
     <link href="/frontEnd/css/font-awesome.min.css" rel="stylesheet">
     <link href="/frontEnd/css/prettyPhoto.css" rel="stylesheet">
     <link href="/frontEnd/css/price-range.css" rel="stylesheet">
     <link href="/frontEnd/css/animate.css" rel="stylesheet">
     <link href="/frontEnd/css/main.css" rel="stylesheet">
     <link href="/frontEnd/css/responsive.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets2/plugins/bootstrap/css/bootstrap.min.css">    
-    <link rel="stylesheet" href="/assets2/css/ecommerce.css">
-    <link rel="stylesheet" href="/assets2/css/color_skins.css">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700"> 
     <link rel="stylesheet" href="/fonts/icomoon/style.css">
 
@@ -44,6 +45,7 @@
     <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+    
     <style>
     article, aside, figure, footer, header, hgroup, 
     menu, nav, section { display: block; }
@@ -86,15 +88,6 @@
                 <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                       <span class="glyphicon glyphicon-globe"></i><strong>Notification</strong>
-<<<<<<< HEAD
-                      <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                            @foreach($notif as $notif)
-                                    <li><a href=""> {{$notif->data}}</a></li>
-                            @endforeach
-                        </li>
-=======
                       <span class="badge">{{$jum}}</span>
                     </a>
                     @if (Auth::id())
@@ -107,7 +100,6 @@
                       $notif = 0;
                       @endphp
                       @endif
->>>>>>> 34c34d17aa67150fb35f3809f166b83228a01c9b
                        
                        
                     </ul>
@@ -139,37 +131,12 @@
       <nav class="site-navigation text-right text-md-center" role="navigation">
         <div class="container">
           <ul class="site-menu js-clone-nav d-none d-md-block">
-            <li class="has-children active">
-              <a href="index.html">Home</a>
-              <ul class="dropdown">
-                <li><a href="#">Menu One</a></li>
-                <li><a href="#">Menu Two</a></li>
-                <li><a href="#">Menu Three</a></li>
-                <li class="has-children">
-                  <a href="#">Sub Menu</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Menu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
-                  </ul>
-                </li>
-              </ul>
+            <li>
+              <a href="/index">Home</a>
             </li>
-            <li class="has-children">
-              <a href="about.html">About</a>
-              <ul class="dropdown">
-                <li><a href="#">Menu One</a></li>
-                <li><a href="#">Menu Two</a></li>
-                <li><a href="#">Menu Three</a></li>
-              </ul>
-            </li>
-            <li class="has-children">
-            <!-- <li><a href="/admin">Admin</a></li> -->
-            
             <li><a href="/shop">Shop</a></li>
             <li><a href="/transaction">Transaction</a></li>
             <li><a href="/viewcart">Cart</a></li>
-            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
       </nav>
@@ -263,7 +230,6 @@
   <script src="/js/main.js"></script>
   <script src="/js/jquery-3.2.1.min.js"></script>
 	<script src="/js/popper.js"></script>
-	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/stellar.js"></script>
 	<script src="/vendors/lightbox/simpleLightbox.min.js"></script>
 	<script src="/vendors/nice-select/js/jquery.nice-select.min.js"></script>

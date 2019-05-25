@@ -21,7 +21,16 @@
   <div class="site-section block-3 site-blocks-2 bg-light">
     <div class="container">
 
-            
+    @if(\Session::has('alert'))
+    <div class="alert alert-danger">
+        <div>{{Session::get('alert')}}</div>
+    </div>
+@endif
+@if(\Session::has('alert-success'))
+    <div class="alert alert-success">
+        <div>{{Session::get('alert-success')}}</div>
+    </div>
+@endif
     <div class="row">
       <div class="preview col-lg-4 col-md-12">
                 <div class="preview-pic tab-content">
@@ -87,7 +96,15 @@
                             </button>
                             @endif
                         </span>
-                        
+                        <p><b>Category:</b> 
+                        @for($i=1; $i<=sizeof($detail); $i++)
+                            @if($i == sizeof($detail))
+                                {{ $detail[$i-1]->category_name }}.
+                            @else
+                                {{ $detail[$i-1]->category_name }},
+                            @endif
+                        @endfor
+                        </p>
                         <p><b>Availability:</b>
                             @if($detail_product->stock >0)
                                 <span id="availableStock">In Stock</span>
@@ -98,6 +115,9 @@
                         <p><b>Condition:</b> New</p>
 
                         <p><b>Discount:</b>@if(empty($dis)) None @else {{$dis->percentage}}% untill {{date('d M Y', strtotime($dis->end))}} @endif</p>
+                        <p><b>Description:</b> 
+                            <pre>{{ $detail_product->description }}</pre> 
+                        </p>
                         <p>
                             @php
                                 $a = 5;
@@ -112,10 +132,36 @@
                                 <span style="color: grey;" class="fa fa-star"></span>
                             @endfor
                         </p>
+                        
                         {{-- <a href=""><img src="{{asset('frontEnd/images/product-details/share.png')}}" class="share img-responsive"  alt="" /></a> --}}
                     </div><!--/product-information-->
                 </form>
+
+                
             </div>
+        </div>
+        <div class="product-information">
+        <h2><b>Product Review</b></h2>
+            <br>
+            @for($i=1; $i<=sizeof($review); $i++)
+                <label> {{$i}}. {{ $review[$i-1]->name }}</label>
+                <br>
+                <input type="text" value=" {{ $review[$i-1]->content }} " readonly/>
+                @php
+                    $a = 5;
+                    $b = $review[$i-1]->rate;
+                @endphp
+                @for($i=1 ; $i<=$b ; $i++)
+                    @php
+                        $a = $a-1;
+                    @endphp
+                    <span style="color: gold;" class="fa fa-star checked"></span>
+                @endfor
+                @for($i=0 ; $i< $a; $i++)
+                    <span style="color: grey;" class="fa fa-star"></span>
+                @endfor
+                <br><br>
+            @endfor
         </div>
       </div>
     </div>

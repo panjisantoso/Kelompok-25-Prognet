@@ -14,7 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
+    <link rel="stylesheet" href="{{asset('backend/bower_components/select2/dist/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('backend/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
     <link rel="apple-touch-icon" href="/apple-icon.png">
     <link rel="shortcut icon" href="/favicon.ico">
 
@@ -320,7 +321,7 @@ function readURL(input) {
     });
 </script>
 
-script src="{{asset ("backend/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
+<script src="{{asset ("backend/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
 <script src="{{ asset ("backend/bower_components/datatables.net/js/jquery.dataTables.min.js") }}"></script>
 <script src="{{ asset ("backend/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js") }}"></script>
 <script>

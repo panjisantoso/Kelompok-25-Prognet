@@ -28,7 +28,7 @@
               </div>
             </div>
             <div class="row mb-5">
-          
+  
             @for($i = 1; $i <=sizeof($products); $i++)
             
               <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
