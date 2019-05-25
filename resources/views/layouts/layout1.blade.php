@@ -86,7 +86,20 @@
                 <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                       <span class="glyphicon glyphicon-globe"></i><strong>Notification</strong>
+<<<<<<< HEAD
                       <span class="badge">{$jum}}</span>
+=======
+<<<<<<< HEAD
+                      <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                            @foreach($notif as $notif)
+                                    <li><a href=""> {{$notif->data}}</a></li>
+                            @endforeach
+                        </li>
+=======
+                      <span class="badge">{{$jum}}</span>
+>>>>>>> 4ed516b75c583f3eca8d400354d7a2d07b57caa0
                     </a>
                     @if (Auth::id())
                     <ul class="dropdown-menu dropdown-alerts">
@@ -98,6 +111,7 @@
                       $notif = 0;
                       @endphp
                       @endif
+>>>>>>> 34c34d17aa67150fb35f3809f166b83228a01c9b
                        
                        
                     </ul>

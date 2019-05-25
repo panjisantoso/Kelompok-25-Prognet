@@ -319,3 +319,169 @@ function readURL(input) {
         });
     });
 </script>
+
+script src="{{asset ("backend/bower_components/select2/dist/js/select2.full.min.js")}}"></script>
+<script src="{{ asset ("backend/bower_components/datatables.net/js/jquery.dataTables.min.js") }}"></script>
+<script src="{{ asset ("backend/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js") }}"></script>
+<script>
+    $(function() {
+        $("#product").DataTable();
+    });
+
+</script>
+
+<script>
+    $(document).ready(function() {
+
+        $('.select2').select2()
+    /**
+    * for showing edit item popup
+    */
+
+    //input category
+    $(document).on('click', "#add-category", function() {
+        $(this).addClass('add-category-clicked'); //useful for identifying which trigger was clicked and consequently grab data from the correct row and not the wrong one.
+        var options = {
+        'backdrop': 'static'
+        };
+        $('#modal-input-category').modal(options)
+    })
+    // on modal show
+    $('#modal-input-category').on('show.bs.modal', function() {
+        var el = $(".add-category-clicked"); // See how its usefull right here? 
+        // get the data
+        var id = el.data('item-id');
+        $("#categoryForm").attr('action', '/admin/input-category/'+id);
+        // fill the data in the input fields
+    })
+    // on modal hide
+    $('#modal-input-category').on('hide.bs.modal', function() {
+        $('.add-categoryclicked').removeClass('add-category-clicked')
+        $("#categoryForm").trigger("reset");
+    })
+
+    
+    //input image
+    $(document).on('click', "#add-image", function() {
+        $(this).addClass('add-image-clicked'); //useful for identifying which trigger was clicked and consequently grab data from the correct row and not the wrong one.
+        var options = {
+        'backdrop': 'static'
+        };
+        $('#modal-input-image').modal(options)
+    })
+    // on modal show
+    $('#modal-input-image').on('show.bs.modal', function() {
+        var el = $(".add-image-clicked"); // See how its usefull right here? 
+        // get the data
+        var id = el.data('item-id');
+        $("#imageForm").attr('action', '/admin/input-image/'+id);
+        // fill the data in the input fields
+    })
+    // on modal hide
+    $('#modal-input-image').on('hide.bs.modal', function() {
+        $('.add-image-clicked').removeClass('add-image-clicked')
+        $("#imageForm").trigger("reset");
+    })
+
+
+    //edit
+    $(document).on('click', "#edit-item", function() {
+        $(this).addClass('edit-item-trigger-clicked'); //useful for identifying which trigger was clicked and consequently grab data from the correct row and not the wrong one.
+
+        var options = {
+        'backdrop': 'static'
+        };
+        $('#modal-default').modal(options)
+    })
+
+    // on modal show
+    $('#modal-default').on('show.bs.modal', function() {
+        
+        var el = $(".edit-item-trigger-clicked"); // See how its usefull right here? 
+        var row = el.closest(".data-row");
+
+        // get the data
+        var id = el.data('item-id');
+        var name = row.children(".product_name").text();
+        var price = row.children(".price").text();
+        var desc = row.children(".description").text();
+        var stok = row.children(".stock").text();
+        var weight = row.children(".weight").text();
+
+        $("#edit-form").attr('action', '/admin/product/'+id);
+        // fill the data in the input fields
+        
+        $("#modal-edit-name").val(name);
+        $("#modal-edit-price").val(price);
+        $("#modal-edit-desc").val(desc);
+        $("#modal-edit-stok").val(stok);
+        $("#modal-edit-weight").val(weight);
+        
+
+    })
+
+    // on modal hide
+    $('#modal-default').on('hide.bs.modal', function() {
+        $('.edit-item-trigger-clicked').removeClass('edit-item-trigger-clicked')
+        $("#edit-form").trigger("reset");
+    })
+
+    $("#image").change(function(){
+        const fileName = $(this).val().split("\\");
+        var inp = document.getElementById('image');
+        var name = "";
+        for (var i = 0; i < inp.files.length; ++i) {
+            if (i == inp.files.length - 1) {
+                name += inp.files.item(i).name;
+            }
+            else{
+                name += inp.files.item(i).name+", ";
+            }
+        }
+
+        if(fileName.length > 1){
+            $("#image-label").html(name);
+        } else {
+            $("#image-label").html("Click to select the product image");
+        }
+    });
+
+    $("#single-image").change(function(){
+        const fileName = $(this).val().split("\\");
+        var inp = document.getElementById('single-image');
+        var name = "";
+        for (var i = 0; i < inp.files.length; ++i) {
+            if (i == inp.files.length - 1) {
+                name += inp.files.item(i).name;
+            }
+            else{
+                name += inp.files.item(i).name+", ";
+            }
+        }
+
+        if(fileName.length > 1){
+            $("#single-image-label").html(name);
+        } else {
+            $("#single-image-label").html("Click to select the product image");
+        }
+    });
+
+    $(document).on('click', "#delete", function() {
+        del = this;
+        swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",            
+            type: "warning",
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            showCancelButton: true,
+        }, function(value) {
+            if (value) {
+                $(del).closest("form").submit();
+            }
+        })
+    });
+
+    
+})
+</script>
