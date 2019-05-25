@@ -88,22 +88,12 @@
                 <li class="dropdown" id ="markasread" onclick="markNotificationAsRead()">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                       <span class="glyphicon glyphicon-globe"></i><strong>Notification</strong>
-
-                      <span class="badge">{$jum}}</span>
-
-                      <span class="badge">{{count(auth()->user()->unreadNotifications)}}</span>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                            @foreach($notif as $notif)
-                                    <li><a href=""> {{$notif->data}}</a></li>
-                            @endforeach
-                        </li>
                       <span class="badge">{{$jum}}</span>
                     </a>
                     @if (Auth::id())
                     <ul class="dropdown-menu dropdown-alerts">
                             @foreach($notif as $notif)
-                                    <li><a href="{{Route('admin.markReadAdmin')}}"> $notif->data</a></li>
+                                    <li><a href="{{Route('admin.markReadAdmin')}}"> {{$notif->data}}</a></li>
                             @endforeach
                       @else
                       @php
